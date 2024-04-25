@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbcttwbyelpdh"]
+
+[ext_resource type="Theme" uid="uid://b7bd3k6pcf7dq" path="res://Resources/ui.tres" id="1_a6yr1"]
+[ext_resource type="Script" path="res://Scenes/main_menu.gd" id="1_j58ib"]
+[ext_resource type="PackedScene" uid="uid://dkl0rgmspqnyr" path="res://Scenes/scene_change_button.tscn" id="2_gd8dd"]
+[ext_resource type="Theme" uid="uid://b4rnwi0o6qqrj" path="res://Resources/HeaderTheme.tres" id="2_kkyw2"]
+[ext_resource type="Script" path="res://Scripts/QuitButton.gd" id="3_unk5y"]
+
+[node name="MainMenu" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j58ib")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_a6yr1")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_kkyw2")
+text = "GAME TITLE YEAH!!!!!"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme = ExtResource("1_a6yr1")
+alignment = 1
+
+[node name="PlayButton" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_gd8dd")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Play"
+scene = "res://Scenes/ShipMenu.tscn"
+
+[node name="NewSaveButton" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_gd8dd")]
+layout_mode = 2
+disabled = true
+text = "New Save"
+scene = "res://Scenes/ShipMenu.tscn"
+
+[node name="LeaderboardButton" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_gd8dd")]
+layout_mode = 2
+text = "Leaderboard"
+scene = "res://Scenes/leaderboard.tscn"
+
+[node name="SettingsButton" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_gd8dd")]
+layout_mode = 2
+text = "Settings"
+scene = "res://Scenes/settings_menu.tscn"
+
+[node name="QuitButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_a6yr1")
+text = "Quit"
+script = ExtResource("3_unk5y")

@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://c14g61vexp744"]
+
+[ext_resource type="Script" path="res://Scripts/BatteryInformation.gd" id="1_ut0nu"]
+[ext_resource type="Texture2D" uid="uid://dy1pv8kqoeh0l" path="res://Assets/energyBarTexture.png" id="2_4ixan"]
+[ext_resource type="Texture2D" uid="uid://ddgwrrrdxrhbo" path="res://Assets/EnergyBarfill.png" id="3_kgdlm"]
+[ext_resource type="FontFile" uid="uid://dy3wkb7nott0s" path="res://Assets/Fonts/PixelFJVerdana12pt.ttf" id="4_r885o"]
+
+[node name="VBoxContainer" type="VBoxContainer"]
+size_flags_horizontal = 4
+script = ExtResource("1_ut0nu")
+
+[node name="ProgressBar" type="TextureProgressBar" parent="."]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+max_value = 500.0
+value = 500.0
+texture_over = ExtResource("2_4ixan")
+texture_progress = ExtResource("3_kgdlm")
+texture_progress_offset = Vector2(18, 0)
+
+[node name="EnergyText" type="Label" parent="ProgressBar"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("4_r885o")
+theme_override_font_sizes/font_size = 18
+text = "1674 energy"
+horizontal_alignment = 1
+
+[node name="InfoContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="EnergyPerSecond" type="Label" parent="InfoContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("4_r885o")
+theme_override_font_sizes/font_size = 12
+text = "72163 energy per second"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BatteryText" type="Label" parent="InfoContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("4_r885o")
+text = "67123 battery capacity"
+horizontal_alignment = 2

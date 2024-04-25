@@ -1,0 +1,98 @@
+[gd_scene load_steps=12 format=3 uid="uid://c56yq85sm08jh"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_uaml3"]
+[ext_resource type="Texture2D" uid="uid://d3dio3e78hdkx" path="res://Assets/elf_f_run_anim_f0.png" id="2_6b7nj"]
+[ext_resource type="Shader" path="res://Assets/outline.gdshader" id="3_0jv7p"]
+[ext_resource type="Script" path="res://Scripts/playerCamera.gd" id="3_76ufb"]
+[ext_resource type="Script" path="res://Scenes/Gun.gd" id="3_fh6di"]
+[ext_resource type="Script" path="res://Scripts/BulletSpawnPoint.gd" id="5_4j31m"]
+[ext_resource type="Texture2D" uid="uid://jkigid20agah" path="res://Assets/NoOutlineAK.png" id="6_v11hf"]
+[ext_resource type="PackedScene" path="res://Scenes/player_ui.tscn" id="8_ifvhl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ojjjt"]
+radius = 7.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ssxd"]
+shader = ExtResource("3_0jv7p")
+shader_parameter/enabled = true
+shader_parameter/line_color = Color(0, 0, 0, 1)
+shader_parameter/line_thickness = 1.0
+shader_parameter/modulate = Color(1, 1, 1, 1)
+
+[sub_resource type="GDScript" id="GDScript_wy016"]
+script/source = "extends Sprite2D
+
+@onready var subViewport = $\"..\"
+@onready var player = $\"../../..\"
+@onready var gun = $\".\"
+
+var gunOffset: Vector2 = Vector2(9, -2)
+var length: int = 28
+
+
+func _ready() -> void:
+	position = subViewport.size / 2
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+
+func _process(delta) -> void:
+	flip_v = abs(rotation) > PI/2
+	offset = gunOffset
+	offset.y = gunOffset.y * (int(abs(rotation) > PI/2)*2-1)
+	rotation = (player.get_global_mouse_position()-player.global_position).angle()
+
+"
+
+[node name="player" type="CharacterBody2D"]
+position = Vector2(1000, 500)
+script = ExtResource("1_uaml3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ojjjt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -7)
+texture = ExtResource("2_6b7nj")
+
+[node name="Gun" type="Node2D" parent="."]
+script = ExtResource("3_fh6di")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Gun"]
+material = SubResource("ShaderMaterial_7ssxd")
+offset_left = -96.0
+offset_top = -54.0
+offset_right = 96.0
+offset_bottom = 54.0
+mouse_filter = 2
+
+[node name="SubViewport" type="SubViewport" parent="Gun/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(192, 108)
+render_target_update_mode = 4
+
+[node name="GunSprite" type="Sprite2D" parent="Gun/SubViewportContainer/SubViewport"]
+position = Vector2(96, 54)
+texture = ExtResource("6_v11hf")
+script = SubResource("GDScript_wy016")
+
+[node name="ReloadTimer" type="Timer" parent="Gun"]
+
+[node name="FireRateTimer" type="Timer" parent="Gun"]
+one_shot = true
+
+[node name="BulletSpawnPoint" type="Marker2D" parent="."]
+script = ExtResource("5_4j31m")
+
+[node name="FireRateTimer" type="Timer" parent="BulletSpawnPoint"]
+one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(6, 6)
+position_smoothing_speed = 30.0
+script = ExtResource("3_76ufb")
+smoothSpeed = 20.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerUI" parent="CanvasLayer" instance=ExtResource("8_ifvhl")]
+unique_name_in_owner = true

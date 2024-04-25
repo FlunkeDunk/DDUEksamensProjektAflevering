@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="GeneratorItem" load_steps=4 format=3 uid="uid://c0ox1ls3q22ml"]
+
+[ext_resource type="Script" path="res://Scripts/GeneratorItemClass.gd" id="1_71vnx"]
+[ext_resource type="Texture2D" uid="uid://dlut0koxjfyg8" path="res://Assets/ItemSprites/on_shoot.png" id="1_hvtcv"]
+[ext_resource type="Script" path="res://Scripts/GeneratorScripts/on_shoot_script.gd" id="2_3s0dt"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_71vnx")
+energyGenerated = 1
+nodeScript = ExtResource("2_3s0dt")
+name = "Golden trigger"
+description = "Gain amount energy when your gun is fired"
+inventorySprite = ExtResource("1_hvtcv")
+price = 100
+rarity = 2

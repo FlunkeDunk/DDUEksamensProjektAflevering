@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://by1i2sq56ea34"]
+
+[ext_resource type="Script" path="res://Scripts/basic_bullet.gd" id="1_47ovb"]
+[ext_resource type="Texture2D" uid="uid://bycw4wk8wlvy4" path="res://Assets/SimplePixelBullet.png" id="1_cphfm"]
+[ext_resource type="Shader" path="res://Scenes/bulletShader.gdshader" id="2_r7oqp"]
+[ext_resource type="Shader" path="res://Assets/outline.gdshader" id="2_vgca5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s4sqr"]
+radius = 6.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kmn7y"]
+shader = ExtResource("2_vgca5")
+shader_parameter/enabled = true
+shader_parameter/line_color = Color(0.964706, 0.937255, 0.67451, 1)
+shader_parameter/line_thickness = 1.0
+shader_parameter/modulate = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6w6x6"]
+shader = ExtResource("2_r7oqp")
+
+[node name="BasicBullet" type="RigidBody2D"]
+collision_layer = 2
+gravity_scale = 0.0
+script = ExtResource("1_47ovb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_s4sqr")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_kmn7y")
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+pivot_offset = Vector2(20, 20)
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(40, 40)
+render_target_update_mode = 4
+
+[node name="BulletSprite" type="Sprite2D" parent="SubViewportContainer/SubViewport"]
+material = SubResource("ShaderMaterial_6w6x6")
+position = Vector2(20, 20)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_cphfm")
+
+[node name="PointLight2D" type="PointLight2D" parent="SubViewportContainer/SubViewport/BulletSprite"]
+color = Color(0, 0, 0, 1)
+texture = ExtResource("1_cphfm")
+texture_scale = 1.5

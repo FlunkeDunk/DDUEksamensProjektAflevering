@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EffectItem" load_steps=4 format=3 uid="uid://4udpmlw8aj1s"]
+
+[ext_resource type="Texture2D" uid="uid://dbgobxcpbpku0" path="res://Assets/ItemSprites/next_enemy_killed_explodes_2.png" id="1_6q785"]
+[ext_resource type="Script" path="res://Scripts/EffectScripts/next_enemy_killed_explodes_script.gd" id="2_s6agf"]
+[ext_resource type="Script" path="res://Scripts/EffectItemClass.gd" id="3_ryfl6"]
+
+[resource]
+script = ExtResource("3_ryfl6")
+energyNeeded = 40
+nodeScript = ExtResource("2_s6agf")
+name = "Radioactive core"
+description = "Causes the next enemy to explode  "
+inventorySprite = ExtResource("1_6q785")
+price = 100
+rarity = 0

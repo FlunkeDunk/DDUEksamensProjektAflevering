@@ -1,0 +1,94 @@
+[gd_scene load_steps=7 format=3 uid="uid://fponifveyfv5"]
+
+[ext_resource type="PackedScene" uid="uid://birovpxit7om8" path="res://Scenes/level_manager.tscn" id="1_gh06l"]
+[ext_resource type="PackedScene" uid="uid://06wwr84dqble" path="res://Scenes/artifact_manager.tscn" id="2_g536g"]
+
+[sub_resource type="Animation" id="Animation_itjgu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_te4r4"]
+resource_name = "fade_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qh4j0"]
+resource_name = "fade_in_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0hhro"]
+_data = {
+"RESET": SubResource("Animation_itjgu"),
+"fade_in": SubResource("Animation_te4r4"),
+"fade_in_out": SubResource("Animation_qh4j0")
+}
+
+[node name="MainScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="LevelManager" parent="." instance=ExtResource("1_gh06l")]
+layout_mode = 1
+mouse_filter = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ArtifactManager" parent="." node_paths=PackedStringArray("levelManager") instance=ExtResource("2_g536g")]
+levelManager = NodePath("../LevelManager")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("../LevelManager")
+libraries = {
+"": SubResource("AnimationLibrary_0hhro")
+}
+
+[connection signal="child_entered_tree" from="LevelManager" to="LevelManager" method="_on_child_entered_tree"]

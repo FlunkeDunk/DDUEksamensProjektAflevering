@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Artifact" load_steps=4 format=3 uid="uid://crb3vkomtotw8"]
+
+[ext_resource type="Texture2D" uid="uid://ddy4oihdu8bmf" path="res://Assets/ItemSprites/RebuyUpgrades_6x6.png" id="1_1vkdm"]
+[ext_resource type="Script" path="res://Scripts/Artifacts/RebuyUpgradesScript.gd" id="1_3bp7l"]
+[ext_resource type="Script" path="res://Scripts/ArtifactClass.gd" id="2_btm04"]
+
+[resource]
+script = ExtResource("2_btm04")
+nodeScript = ExtResource("1_3bp7l")
+name = "Glitched panel"
+description = "Single buy upgrades in your powerplant can be bought once more"
+inventorySprite = ExtResource("1_1vkdm")
+price = 300
+rarity = 0

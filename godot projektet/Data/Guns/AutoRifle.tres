@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Gun" load_steps=7 format=3 uid="uid://b2loruqo33m46"]
+
+[ext_resource type="PackedScene" uid="uid://c5cgt8avnkbl3" path="res://Scenes/Bullets/plasma_bullet.tscn" id="1_afmsn"]
+[ext_resource type="Texture2D" uid="uid://ri2vvy5ag48" path="res://Assets/GunSprites/Rifle_16x16.png" id="2_snghr"]
+[ext_resource type="Script" path="res://Scripts/GunClass.gd" id="2_xefm4"]
+[ext_resource type="AudioStream" uid="uid://bfagjju5aqvuq" path="res://Assets/AudioFiles/ARReload.mp3" id="4_sff21"]
+[ext_resource type="AudioStream" uid="uid://bw2l8h2uh4ifq" path="res://Assets/AudioFiles/basicShoot.wav" id="5_wow2w"]
+[ext_resource type="Texture2D" uid="uid://bknmfqqu0xwc1" path="res://Assets/GunSprites/Rifle_32x32.png" id="6_efiyb"]
+
+[resource]
+script = ExtResource("2_xefm4")
+damageMultiplier = 1.0
+bulletCount = 1
+fireRate = 10.0
+spread = 4
+burstSize = 1
+reloadTime = 1.0
+maxAmmo = 30
+lenght = 30
+offSet = Vector2(9, 1)
+sprite = ExtResource("6_efiyb")
+shootSound = ExtResource("5_wow2w")
+reloadSound = ExtResource("4_sff21")
+bulletNode = ExtResource("1_afmsn")
+name = "AK47"
+description = "An all purpose rifle commonly used in interplanetary warfare"
+inventorySprite = ExtResource("2_snghr")
+price = 1000
+rarity = 4

@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Gun" load_steps=7 format=3 uid="uid://13fedextjb70"]
+
+[ext_resource type="PackedScene" uid="uid://5ijft88dbp1d" path="res://Scenes/Bullets/shotgun_bullet.tscn" id="1_coplf"]
+[ext_resource type="Texture2D" uid="uid://c5x0idpf1wd76" path="res://Assets/GunSprites/Shotgun_16x16.png" id="2_5ny8c"]
+[ext_resource type="Script" path="res://Scripts/GunClass.gd" id="2_y5luv"]
+[ext_resource type="AudioStream" uid="uid://cgaih0dt2bh1k" path="res://Assets/AudioFiles/laserReload.wav" id="4_a2ooq"]
+[ext_resource type="Texture2D" uid="uid://38npalrcrjdt" path="res://Assets/GunSprites/Shotgun_32x32.png" id="4_prqhj"]
+[ext_resource type="AudioStream" uid="uid://cel5vsm7a2wbw" path="res://Assets/AudioFiles/shotgunShoot.wav" id="5_qseqb"]
+
+[resource]
+script = ExtResource("2_y5luv")
+damageMultiplier = 0.6
+bulletCount = 6
+fireRate = 2.0
+spread = 40
+burstSize = 1
+reloadTime = 0.5
+maxAmmo = 4
+lenght = 30
+offSet = Vector2(9, 0)
+sprite = ExtResource("4_prqhj")
+shootSound = ExtResource("5_qseqb")
+reloadSound = ExtResource("4_a2ooq")
+bulletNode = ExtResource("1_coplf")
+name = "Shotgun"
+description = "A heavy shotgun which fires six bullets every shot"
+inventorySprite = ExtResource("2_5ny8c")
+price = 1000
+rarity = 0

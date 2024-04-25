@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EffectItem" load_steps=4 format=3 uid="uid://cm1v4fb1teaks"]
+
+[ext_resource type="Script" path="res://Scripts/EffectItemClass.gd" id="1_i3wjk"]
+[ext_resource type="Texture2D" uid="uid://weqv5yapvay0" path="res://Assets/ItemSprites/shoot_again.png" id="1_iaxod"]
+[ext_resource type="Script" path="res://Scripts/EffectScripts/shoot_again.gd" id="2_od4xr"]
+
+[resource]
+script = ExtResource("1_i3wjk")
+energyNeeded = 13
+nodeScript = ExtResource("2_od4xr")
+name = "Double shot"
+description = "Wil make your gun shoot without using ammo  "
+inventorySprite = ExtResource("1_iaxod")
+price = 100
+rarity = 0

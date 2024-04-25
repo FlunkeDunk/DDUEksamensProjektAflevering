@@ -1,0 +1,71 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjwm35btkan4"]
+
+[sub_resource type="GDScript" id="GDScript_seman"]
+script/source = "extends Node2D
+
+var musicInstance: AudioStreamPlayer
+var ambienceInstance: AudioStreamPlayer
+
+func play_sound(stream: AudioStream):
+	var instance = AudioStreamPlayer.new()
+	instance.stream = stream
+	instance.set_bus(\"SFX\")
+	instance.finished.connect(remove_sound.bind(instance))
+	add_child(instance)
+	instance.play()
+
+func remove_sound(sound) -> void:
+	sound.queue_free()
+	
+func play_music(stream: AudioStream):
+	if is_instance_valid(musicInstance):
+		fadeMusic(stream)
+	else:
+		startMusic(stream)
+
+func startMusic(stream: AudioStream):
+	if is_instance_valid(musicInstance):
+		musicInstance.queue_free()
+	musicInstance = AudioStreamPlayer.new()
+	musicInstance.set_bus(\"Music\")
+	musicInstance.stream = stream
+	add_child(musicInstance)
+	musicInstance.play()
+
+func fadeMusic(stream: AudioStream):
+	print(\"fade\")
+	var tween: Tween
+	if tween:
+		tween.kill() # Abort the previous animation.
+	tween = create_tween()
+	tween.finished.connect(startMusic.bind(stream))
+	tween.tween_property(musicInstance, \"volume_db\", -25, 1.0)
+	return
+
+func play_ambience(stream: AudioStream):
+	if is_instance_valid(ambienceInstance):
+		ambienceInstance.queue_free()
+	ambienceInstance = AudioStreamPlayer.new()
+	ambienceInstance.set_bus(\"Music\")
+	ambienceInstance.stream = stream
+	add_child(ambienceInstance)
+	ambienceInstance.play()
+
+func stopAmbience():
+	if !is_instance_valid(ambienceInstance):
+		return
+	var tween: Tween
+	if tween:
+		tween.kill() # Abort the previous animation.
+	tween = create_tween()
+	tween.tween_property(ambienceInstance, \"volume_db\", -25, 1.0)
+	tween.finished.connect(killAmbience)
+	
+func killAmbience():
+	if is_instance_valid(ambienceInstance):
+		ambienceInstance.queue_free()
+"
+
+[node name="SFXManager" type="Node2D"]
+process_mode = 3
+script = SubResource("GDScript_seman")

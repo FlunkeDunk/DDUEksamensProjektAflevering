@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctv3tsvfbm8ra"]
+
+[ext_resource type="Script" path="res://Scripts/Ranking.gd" id="1_tt2q7"]
+[ext_resource type="StyleBox" uid="uid://li8dobj0samt" path="res://Resources/digitalPanelOrangeStyleBox.tres" id="2_1qg21"]
+[ext_resource type="Theme" uid="uid://d4enr3o3c1o82" path="res://Resources/ui.tres" id="3_xdw4k"]
+
+[node name="Ranking" type="HBoxContainer"]
+theme_override_constants/separation = 40
+alignment = 1
+script = ExtResource("1_tt2q7")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_1qg21")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="PlacementLabel" type="Label" parent="Panel/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("3_xdw4k")
+theme_override_font_sizes/font_size = 18
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="."]
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_1qg21")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel2/MarginContainer"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="Panel2/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+theme = ExtResource("3_xdw4k")
+theme_override_font_sizes/font_size = 18
+text = "name"
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="Panel2/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("3_xdw4k")
+theme_override_font_sizes/font_size = 18
+text = "12312"
+horizontal_alignment = 2
+vertical_alignment = 1

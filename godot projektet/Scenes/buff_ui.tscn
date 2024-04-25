@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://boycbp0ll8put"]
+
+[ext_resource type="Script" path="res://Scripts/BuffUI.gd" id="1_psgpr"]
+[ext_resource type="Texture2D" uid="uid://7xjhjht7ouw" path="res://Assets/ItemSprites/CheaperEffectsArtifact_6x6.png" id="2_0lh8b"]
+[ext_resource type="Texture2D" uid="uid://ds4n7gx11kbxs" path="res://Assets/6x6Black.png" id="3_jw20r"]
+[ext_resource type="FontFile" uid="uid://dy3wkb7nott0s" path="res://Assets/Fonts/PixelFJVerdana12pt.ttf" id="4_erfp1"]
+
+[node name="BuffUI" type="Control"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 36.0
+offset_bottom = 36.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("1_psgpr")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.458824, 0.458824, 0.458824, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_0lh8b")
+expand_mode = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+self_modulate = Color(1, 1, 1, 0.588235)
+layout_mode = 1
+offset_right = 6.0
+offset_bottom = 6.0
+scale = Vector2(16, 16)
+step = 0.0
+fill_mode = 5
+texture_progress = ExtResource("3_jw20r")
+
+[node name="Count" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 96.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("4_erfp1")
+theme_override_font_sizes/font_size = 0
+text = "1"
+horizontal_alignment = 2
+vertical_alignment = 2

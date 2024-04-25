@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2s4ijfbxvcf0"]
+
+[ext_resource type="StyleBox" uid="uid://bqidy4l20f2ob" path="res://Resources/digitalPanelStyleBox.tres" id="1_pfcg8"]
+[ext_resource type="Theme" uid="uid://b7bd3k6pcf7dq" path="res://Resources/ui.tres" id="1_yc5m3"]
+[ext_resource type="Script" path="res://Scripts/leaderboard.gd" id="2_kqwv2"]
+[ext_resource type="Theme" uid="uid://b4rnwi0o6qqrj" path="res://Resources/HeaderTheme.tres" id="2_sl2lf"]
+[ext_resource type="PackedScene" uid="uid://dkl0rgmspqnyr" path="res://Scenes/scene_change_button.tscn" id="4_va7g3"]
+
+[node name="Panel" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_pfcg8")
+script = ExtResource("2_kqwv2")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_yc5m3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_sl2lf")
+text = "Leaderboard"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_yc5m3")
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="PlacementContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="ReturnButton" parent="MarginContainer" instance=ExtResource("4_va7g3")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "Return"
+scene = "res://Scenes/main_menu.tscn"

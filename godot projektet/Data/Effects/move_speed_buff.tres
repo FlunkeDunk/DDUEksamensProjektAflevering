@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EffectItem" load_steps=4 format=3 uid="uid://bdmng7q10siv0"]
+
+[ext_resource type="Texture2D" uid="uid://d0nc2f4tf5d4j" path="res://Assets/ItemSprites/move_speed_buff_6x6.png" id="1_b5yys"]
+[ext_resource type="Script" path="res://Scripts/EffectScripts/move_speed_buff_script.gd" id="2_k655x"]
+[ext_resource type="Script" path="res://Scripts/EffectItemClass.gd" id="3_1lg26"]
+
+[resource]
+script = ExtResource("3_1lg26")
+energyNeeded = 50
+nodeScript = ExtResource("2_k655x")
+name = "Jetpack"
+description = "Grants +30% movespeed for 4 seconds. This buff scales additively"
+inventorySprite = ExtResource("1_b5yys")
+price = 100
+rarity = 0

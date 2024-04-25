@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2xs0xu5777ce"]
+
+[ext_resource type="Script" path="res://Scripts/planet.gd" id="1_vv2w6"]
+[ext_resource type="Shader" path="res://Scenes/Planets/outline.gdshader" id="2_fpi0m"]
+[ext_resource type="Texture2D" uid="uid://dlcfgv7fp0vx6" path="res://Assets/PlanetSprite.png" id="4_kiunk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xxgc3"]
+radius = 56.1427
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_atqtj"]
+resource_local_to_scene = true
+shader = ExtResource("2_fpi0m")
+shader_parameter/enabled = false
+shader_parameter/line_color = Color(0.941176, 0.756863, 0.0509804, 1)
+shader_parameter/line_thickness = 1.0
+shader_parameter/modulate = Color(1, 1, 1, 1)
+
+[node name="Planet" type="Node2D"]
+script = ExtResource("1_vv2w6")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_xxgc3")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_atqtj")
+offset_left = -120.0
+offset_top = -120.0
+offset_right = -80.0
+offset_bottom = -80.0
+scale = Vector2(6, 6)
+mouse_filter = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(40, 40)
+render_target_update_mode = 4
+
+[node name="PlanetSprite" type="Sprite2D" parent="SubViewportContainer/SubViewport"]
+position = Vector2(20, 20)
+scale = Vector2(0.045, 0.045)
+texture = ExtResource("4_kiunk")

@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://da78ivkheia4y"]
+
+[ext_resource type="StyleBox" uid="uid://b54hf5srakv6i" path="res://Resources/metalPanelStyleBox.tres" id="1_ca1pv"]
+[ext_resource type="PackedScene" uid="uid://cdq3k72w3ykeg" path="res://Scenes/planet_selection.tscn" id="1_d7spl"]
+[ext_resource type="Script" path="res://Scripts/ShipMenu.gd" id="1_i46t1"]
+[ext_resource type="PackedScene" uid="uid://baku10u4tyak0" path="res://Scenes/inventory_menu.tscn" id="3_4s04x"]
+[ext_resource type="Script" path="res://Scripts/ShipMenuCamera.gd" id="5_8gehu"]
+
+[sub_resource type="Theme" id="Theme_r0avb"]
+HBoxContainer/constants/separation = 240
+
+[node name="ShipMenu" type="MarginContainer"]
+offset_bottom = 1080.0
+script = ExtResource("1_i46t1")
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(0.352941, 0.352941, 0.439216, 1)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_ca1pv")
+
+[node name="VBoxContainer" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme = SubResource("Theme_r0avb")
+
+[node name="Radar" parent="VBoxContainer" instance=ExtResource("1_d7spl")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="InventoryMenu" parent="VBoxContainer" instance=ExtResource("3_4s04x")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Camera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+offset = Vector2(960, 540)
+script = ExtResource("5_8gehu")

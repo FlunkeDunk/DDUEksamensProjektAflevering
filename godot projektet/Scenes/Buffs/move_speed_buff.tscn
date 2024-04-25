@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cued3geeh0wl2"]
+
+[ext_resource type="Script" path="res://Scripts/Buffs/MoveSpeedBuff.gd" id="1_ip6bx"]
+[ext_resource type="Texture2D" uid="uid://d0nc2f4tf5d4j" path="res://Assets/ItemSprites/move_speed_buff_6x6.png" id="2_i5bwv"]
+
+[node name="MoveSpeedBuff" type="Node2D"]
+script = ExtResource("1_ip6bx")
+time = 4.0
+buffAmount = 0.3
+sprite = ExtResource("2_i5bwv")
+type = "MOVESPEED"

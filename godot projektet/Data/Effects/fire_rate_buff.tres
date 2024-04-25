@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EffectItem" load_steps=4 format=3 uid="uid://bifw538qq6gao"]
+
+[ext_resource type="Script" path="res://Scripts/EffectItemClass.gd" id="1_3nv60"]
+[ext_resource type="Texture2D" uid="uid://bj2s3d3deh7yf" path="res://Assets/ItemSprites/fire_rate_buff_6x6.png" id="1_8hdt3"]
+[ext_resource type="Script" path="res://Scripts/EffectScripts/fire_rate_buff_script.gd" id="1_nuvka"]
+
+[resource]
+script = ExtResource("1_3nv60")
+energyNeeded = 40
+nodeScript = ExtResource("1_nuvka")
+name = "White label soda"
+description = " Grants 50% firerate for 3 seconds. This buff stacks additively"
+inventorySprite = ExtResource("1_8hdt3")
+price = 100
+rarity = 2

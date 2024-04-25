@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://bj8ajxug6r2du"]
+
+[ext_resource type="Script" path="res://Scripts/ShopItem.gd" id="1_nn1ew"]
+[ext_resource type="Shader" path="res://Scripts/outline.gdshader" id="2_8bfru"]
+[ext_resource type="Texture2D" uid="uid://7xjhjht7ouw" path="res://Assets/ItemSprites/CheaperEffectsArtifact_6x6.png" id="3_nh3bk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gn6kf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lcelq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vb8ow"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3e1ct"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g14yt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vsb2a"]
+resource_local_to_scene = true
+shader = ExtResource("2_8bfru")
+shader_parameter/enabled = false
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 6.0
+shader_parameter/modulate = Color(1, 1, 1, 1)
+
+[node name="ShopItem" type="Button"]
+custom_minimum_size = Vector2(96, 96)
+anchors_preset = -1
+anchor_right = 0.05
+anchor_bottom = 0.089
+offset_bottom = -0.120003
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gn6kf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_lcelq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vb8ow")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_3e1ct")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_g14yt")
+script = ExtResource("1_nn1ew")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = -6
+theme_override_constants/margin_top = -6
+theme_override_constants/margin_right = -6
+theme_override_constants/margin_bottom = -6
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_vsb2a")
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_nh3bk")
+expand_mode = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

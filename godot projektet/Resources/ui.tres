@@ -1,0 +1,73 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://d4enr3o3c1o82"]
+
+[ext_resource type="FontFile" uid="uid://dy3wkb7nott0s" path="res://Assets/Fonts/PixelFJVerdana12pt.ttf" id="1_mb5wk"]
+[ext_resource type="Texture2D" uid="uid://b2skqqdsq6b47" path="res://Assets/Digital_panelx6.png" id="2_2hf85"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xmnfn"]
+texture = ExtResource("2_2hf85")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(0.6, 0.3075, 0.21, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ybbnu"]
+texture = ExtResource("2_2hf85")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(1, 0.4, 0.2, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6ghyy"]
+texture = ExtResource("2_2hf85")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(2, 0.8, 0.4, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iahw2"]
+texture = ExtResource("2_2hf85")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(0.7, 0.25375, 0.105, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s0woo"]
+
+[resource]
+default_font = ExtResource("1_mb5wk")
+Button/font_sizes/font_size = 40
+Button/fonts/font = ExtResource("1_mb5wk")
+Button/styles/disabled = SubResource("StyleBoxTexture_xmnfn")
+Button/styles/hover = SubResource("StyleBoxTexture_ybbnu")
+Button/styles/normal = SubResource("StyleBoxTexture_6ghyy")
+Button/styles/pressed = SubResource("StyleBoxTexture_iahw2")
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(1, 1, 1, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 1
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("1_mb5wk")
+Label/styles/normal = SubResource("StyleBoxEmpty_s0woo")
+LineEdit/font_sizes/font_size = 24
+MarginContainer/constants/margin_bottom = 50
+MarginContainer/constants/margin_left = 50
+MarginContainer/constants/margin_right = 50
+MarginContainer/constants/margin_top = 50
+TextEdit/font_sizes/font_size = 60
+VBoxContainer/constants/separation = 20

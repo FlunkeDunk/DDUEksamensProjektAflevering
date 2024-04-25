@@ -1,0 +1,206 @@
+[gd_scene load_steps=25 format=3 uid="uid://c56yq85sm08jh"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_uaml3"]
+[ext_resource type="Script" path="res://Scripts/playerCamera.gd" id="3_76ufb"]
+[ext_resource type="Script" path="res://Scripts/GunNode.gd" id="3_vw6bs"]
+[ext_resource type="PackedScene" uid="uid://n58n1ikoxy7p" path="res://Scenes/inventory.tscn" id="3_ytoej"]
+[ext_resource type="Texture2D" uid="uid://ciogwaeh278au" path="res://Assets/playerFrames/Player_idle_frame_1.png" id="4_0fr4y"]
+[ext_resource type="Texture2D" uid="uid://fwmp7ttca8ag" path="res://Assets/playerFrames/Player_idle_frame_2.png" id="5_hd6bj"]
+[ext_resource type="Texture2D" uid="uid://d051fkvj75bmk" path="res://Assets/playerFrames/Player_run_frame_1.png" id="6_rkljn"]
+[ext_resource type="Script" path="res://Scripts/GunSprite.gd" id="7_buhmo"]
+[ext_resource type="Texture2D" uid="uid://ydxaah44qffs" path="res://Assets/playerFrames/Player_run_frame_2.png" id="7_r7o6c"]
+[ext_resource type="Texture2D" uid="uid://38npalrcrjdt" path="res://Assets/GunSprites/Shotgun_32x32.png" id="8_6miw4"]
+[ext_resource type="PackedScene" uid="uid://c5jo00ibposd8" path="res://Scenes/player_ui.tscn" id="8_ifvhl"]
+[ext_resource type="Resource" uid="uid://b2loruqo33m46" path="res://Data/Guns/AutoRifle.tres" id="9_auwid"]
+[ext_resource type="Shader" path="res://Scripts/bulletShader.gdshader" id="10_ohmwy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ojjjt"]
+radius = 7.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i38h4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_0fr4y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hd6bj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_rkljn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_r7o6c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q6c88"]
+render_priority = 0
+shader = ExtResource("10_ohmwy")
+
+[sub_resource type="Animation" id="Animation_ha4xc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_otad8"]
+resource_name = "hit"
+length = 0.3
+loop_mode = 2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.05, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(10, 10, 10, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jvr5g"]
+_data = {
+"RESET": SubResource("Animation_ha4xc"),
+"hit": SubResource("Animation_otad8")
+}
+
+[sub_resource type="Animation" id="Animation_t7row"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_v2rnf"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_ewdtm"]
+resource_name = "run"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xtyyp"]
+_data = {
+"RESET": SubResource("Animation_t7row"),
+"idle": SubResource("Animation_v2rnf"),
+"run": SubResource("Animation_ewdtm")
+}
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hp04a"]
+polygon = PackedVector2Array(-3, -7, 4, -7, 4, -6, 5, -6, 5, -5, 6, -5, 6, -4, 7, -4, 7, -1, 6, -1, 6, -2, 5, -2, 5, 2, 6, 2, 6, 3, 7, 3, 7, 5, 5, 5, 5, 6, 4, 6, 4, 7, -8, 7, -8, 3, -7, 3, -7, 2, -6, 2, -6, 0, -7, 0, -7, -3, -6, -3, -6, -4, -5, -4, -5, -5, -4, -5, -4, -6, -3, -6)
+
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("ui", "inventory")]
+position = Vector2(1000, 500)
+collision_mask = 7
+script = ExtResource("1_uaml3")
+ui = NodePath("CanvasLayer/PlayerUI")
+inventory = NodePath("CanvasLayer/Inventory")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerUI" parent="CanvasLayer" node_paths=PackedStringArray("inventory") instance=ExtResource("8_ifvhl")]
+unique_name_in_owner = true
+inventory = NodePath("../Inventory")
+
+[node name="Inventory" parent="CanvasLayer" instance=ExtResource("3_ytoej")]
+unique_name_in_owner = true
+visible = false
+onPlanet = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_ojjjt")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_i38h4")
+
+[node name="Gun" type="Node2D" parent="."]
+script = ExtResource("3_vw6bs")
+currentGun = ExtResource("9_auwid")
+
+[node name="ReloadTimer" type="Timer" parent="Gun"]
+one_shot = true
+
+[node name="FireRateTimer" type="Timer" parent="Gun"]
+one_shot = true
+
+[node name="GunSprite" type="Sprite2D" parent="Gun"]
+material = SubResource("ShaderMaterial_q6c88")
+texture = ExtResource("8_6miw4")
+script = ExtResource("7_buhmo")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(6, 6)
+position_smoothing_speed = 30.0
+script = ExtResource("3_76ufb")
+smoothSpeed = 20.0
+
+[node name="RegenTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
+autostart = true
+
+[node name="HitAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jvr5g")
+}
+
+[node name="PlayerAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xtyyp")
+}
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
+occluder = SubResource("OccluderPolygon2D_hp04a")
+
+[connection signal="timeout" from="Gun/ReloadTimer" to="Gun" method="_on_reload_timer_timeout"]

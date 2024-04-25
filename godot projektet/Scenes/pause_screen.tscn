@@ -1,0 +1,260 @@
+[gd_scene load_steps=7 format=3 uid="uid://bb7d2f02kkhq2"]
+
+[ext_resource type="Theme" uid="uid://d4enr3o3c1o82" path="res://Resources/ui.tres" id="1_xdseb"]
+[ext_resource type="Script" path="res://Scripts/PauseScreen.gd" id="2_yeoy3"]
+[ext_resource type="StyleBox" uid="uid://b54hf5srakv6i" path="res://Resources/metalPanelStyleBox.tres" id="3_3pn0d"]
+[ext_resource type="StyleBox" uid="uid://bqidy4l20f2ob" path="res://Resources/digitalPanelStyleBox.tres" id="3_3q5xe"]
+[ext_resource type="PackedScene" uid="uid://naouubj5ea4w" path="res://Scenes/main_menu_button.tscn" id="4_d0ofw"]
+[ext_resource type="Script" path="res://Scripts/settings_menu.gd" id="5_225sj"]
+
+[node name="PauseScreen" type="MarginContainer"]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xdseb")
+script = ExtResource("2_yeoy3")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme = ExtResource("1_xdseb")
+theme_override_constants/margin_left = -12
+theme_override_constants/margin_top = -12
+theme_override_constants/margin_right = -12
+theme_override_constants/margin_bottom = -12
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_xdseb")
+theme_override_styles/panel = ExtResource("3_3pn0d")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+theme = ExtResource("1_xdseb")
+theme_override_styles/panel = ExtResource("3_3q5xe")
+
+[node name="PauseMenu" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xdseb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/PauseMenu"]
+layout_mode = 2
+theme = ExtResource("1_xdseb")
+
+[node name="Label" type="Label" parent="Panel/PauseMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_xdseb")
+text = "Game paused"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel/PauseMenu"]
+layout_mode = 2
+theme = ExtResource("1_xdseb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/PauseMenu/CenterContainer"]
+layout_mode = 2
+theme = ExtResource("1_xdseb")
+
+[node name="ReturnButton" type="Button" parent="Panel/PauseMenu/CenterContainer/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+theme = ExtResource("1_xdseb")
+text = "Return"
+
+[node name="SettingsButton" type="Button" parent="Panel/PauseMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_xdseb")
+text = "Settings"
+
+[node name="MainMenuButton" parent="Panel/PauseMenu/CenterContainer/VBoxContainer" instance=ExtResource("4_d0ofw")]
+layout_mode = 2
+
+[node name="SettingsMenu" type="MarginContainer" parent="Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xdseb")
+script = ExtResource("5_225sj")
+
+[node name="BackButton" type="Button" parent="Panel/SettingsMenu"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme = ExtResource("1_xdseb")
+text = "Back"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/SettingsMenu"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("1_xdseb")
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/SettingsMenu/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_xdseb")
+alignment = 1
+
+[node name="Label" type="Label" parent="Panel/SettingsMenu/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_xdseb")
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/SettingsMenu/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme = ExtResource("1_xdseb")
+alignment = 1
+
+[node name="MasterVolume" type="VBoxContainer" parent="Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_xdseb")
+
+[node name="MasterVolumeLabel" type="Label" parent="Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/MasterVolume"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_xdseb")
+text = "Master"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/MasterVolume"]
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 2
+theme = ExtResource("1_xdseb")
+
+[node name="MasterVolume" type="HSlider" parent="Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/MasterVolume/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_xdseb")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="MasterVolumeText" type="Label" parent="Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/MasterVolume/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+theme = ExtResource("1_xdseb")
+text = "100%"
+
+[node name="SFXVolume" type="VBoxContainer" parent="Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_xdseb")
+
+[node name="SFXVolumeLabel" type="Label" parent="Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/SFXVolume"]
+layout_mode = 2
+theme = ExtResource("1_xdseb")
+text = "SFX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/SFXVolume"]
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 2
+theme = ExtResource("1_xdseb")
+
+[node name="SFXVolume" type="HSlider" parent="Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/SFXVolume/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("1_xdseb")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="SFXVolumeText" type="Label" parent="Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/SFXVolume/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+theme = ExtResource("1_xdseb")
+text = "100%"
+
+[node name="MusicVolume" type="VBoxContainer" parent="Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_xdseb")
+
+[node name="MusicVolumeLabel" type="Label" parent="Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/MusicVolume"]
+layout_mode = 2
+theme = ExtResource("1_xdseb")
+text = "Music"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/MusicVolume"]
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 2
+theme = ExtResource("1_xdseb")
+
+[node name="MusicVolume" type="HSlider" parent="Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/MusicVolume/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("1_xdseb")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="MusicVolumeText" type="Label" parent="Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/MusicVolume/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+theme = ExtResource("1_xdseb")
+text = "100%"
+
+[node name="ArrowSetting" type="HBoxContainer" parent="Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_xdseb")
+
+[node name="Label" type="Label" parent="Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/ArrowSetting"]
+layout_mode = 2
+theme = ExtResource("1_xdseb")
+text = "Point at nearest enemy"
+
+[node name="Arrow" type="CheckButton" parent="Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/ArrowSetting"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("1_xdseb")
+button_pressed = true
+
+[node name="GraphicsSetting" type="HBoxContainer" parent="Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_xdseb")
+
+[node name="Label2" type="Label" parent="Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/GraphicsSetting"]
+layout_mode = 2
+theme = ExtResource("1_xdseb")
+text = "Low graphics"
+
+[node name="Graphics" type="CheckButton" parent="Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/GraphicsSetting"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("1_xdseb")
+
+[connection signal="pressed" from="Panel/PauseMenu/CenterContainer/VBoxContainer/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="Panel/PauseMenu/CenterContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Panel/SettingsMenu/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="value_changed" from="Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/MasterVolume/HBoxContainer/MasterVolume" to="Panel/SettingsMenu" method="_on_master_volume_value_changed"]
+[connection signal="value_changed" from="Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/SFXVolume/HBoxContainer/SFXVolume" to="Panel/SettingsMenu" method="_on_sfx_volume_value_changed"]
+[connection signal="value_changed" from="Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/MusicVolume/HBoxContainer/MusicVolume" to="Panel/SettingsMenu" method="_on_music_volume_value_changed"]
+[connection signal="toggled" from="Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/ArrowSetting/Arrow" to="Panel/SettingsMenu" method="_on_arrow_toggled"]
+[connection signal="toggled" from="Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/GraphicsSetting/Graphics" to="Panel/SettingsMenu" method="_on_graphics_toggled"]

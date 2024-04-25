@@ -1,0 +1,155 @@
+[gd_scene load_steps=10 format=3 uid="uid://cdq3k72w3ykeg"]
+
+[ext_resource type="Script" path="res://Scripts/PlanetSelection.gd" id="1_hvu1k"]
+[ext_resource type="PackedScene" uid="uid://chr2uy6wvy4e0" path="res://Scenes/planets_generator.tscn" id="2_gf51f"]
+[ext_resource type="Theme" uid="uid://knhjlvnyy4q2" path="res://Resources/planet_selection.tres" id="3_3101m"]
+[ext_resource type="Texture2D" uid="uid://dfmo5xi15m1cg" path="res://Assets/SpaceshipSprite.png" id="4_3nwfa"]
+[ext_resource type="PackedScene" uid="uid://dkl0rgmspqnyr" path="res://Scenes/scene_change_button.tscn" id="4_hy7q1"]
+[ext_resource type="Texture2D" uid="uid://c3vgga5j5p6yo" path="res://Assets/spaceBackground.jpg" id="4_u7fj8"]
+[ext_resource type="StyleBox" uid="uid://bqidy4l20f2ob" path="res://Resources/digitalPanelStyleBox.tres" id="5_yaf06"]
+[ext_resource type="FontFile" uid="uid://dy3wkb7nott0s" path="res://Assets/Fonts/PixelFJVerdana12pt.ttf" id="7_dkxhs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kqsxc"]
+
+[node name="PlanetSelection" type="Control"]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_hvu1k")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 60
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 2
+theme_override_constants/margin_left = 84
+theme_override_constants/margin_top = 84
+theme_override_constants/margin_right = 82
+theme_override_constants/margin_bottom = 78
+
+[node name="PlanetsControl" type="Control" parent="HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+mouse_filter = 1
+
+[node name="PlanetsBackground" type="TextureRect" parent="HBoxContainer/MarginContainer/PlanetsControl"]
+unique_name_in_owner = true
+self_modulate = Color(0.670588, 0.670588, 0.670588, 1)
+layout_mode = 0
+offset_left = -773.0
+offset_top = -613.0
+offset_right = -259.0
+offset_bottom = -253.0
+scale = Vector2(6, 6)
+mouse_filter = 2
+theme = ExtResource("3_3101m")
+texture = ExtResource("4_u7fj8")
+stretch_mode = 1
+flip_v = true
+
+[node name="PlanetsGenerator" parent="HBoxContainer/MarginContainer/PlanetsControl" instance=ExtResource("2_gf51f")]
+unique_name_in_owner = true
+layout_mode = 1
+size_flags_stretch_ratio = 3.0
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/MarginContainer/PlanetsControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="HBoxContainer/MarginContainer/PlanetsControl/CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ShipSprite" type="Sprite2D" parent="HBoxContainer/MarginContainer/PlanetsControl/CenterContainer/Control"]
+unique_name_in_owner = true
+z_index = 1
+texture = ExtResource("4_3nwfa")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="HBoxContainer/MarginContainer/PlanetsControl/CenterContainer/Control/ShipSprite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HBoxContainer/MarginContainer/PlanetsControl/CenterContainer/Control/ShipSprite/StaticBody2D"]
+shape = SubResource("RectangleShape2D_kqsxc")
+
+[node name="PlanetInformationPanel" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 84
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 81
+
+[node name="PlanetInformationPanel2" type="Panel" parent="HBoxContainer/PlanetInformationPanel"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("5_yaf06")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PlanetInformationPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PlanetInformationPanel/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PlanetInformationPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="PlanetName" type="Label" parent="HBoxContainer/PlanetInformationPanel/MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 2
+theme = ExtResource("3_3101m")
+theme_override_fonts/font = ExtResource("7_dkxhs")
+theme_override_font_sizes/font_size = 20
+text = "PlanetName
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="PlanetDescription" type="Label" parent="HBoxContainer/PlanetInformationPanel/MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+size_flags_vertical = 2
+theme = ExtResource("3_3101m")
+theme_override_fonts/font = ExtResource("7_dkxhs")
+theme_override_font_sizes/font_size = 12
+text = "PlanetDescription "
+autowrap_mode = 3
+
+[node name="DeployButton" parent="HBoxContainer/PlanetInformationPanel/MarginContainer/VBoxContainer" instance=ExtResource("4_hy7q1")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 10
+disabled = true
+text = "Deploy!"
+script = null
+
+[connection signal="pressed" from="HBoxContainer/PlanetInformationPanel/MarginContainer/VBoxContainer/DeployButton" to="." method="_on_deploy_button_pressed"]

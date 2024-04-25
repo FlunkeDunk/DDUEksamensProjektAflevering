@@ -1,0 +1,234 @@
+[gd_scene load_steps=6 format=3 uid="uid://7avjhm87i6ph"]
+
+[ext_resource type="StyleBox" uid="uid://bqidy4l20f2ob" path="res://Resources/digitalPanelStyleBox.tres" id="1_vuiva"]
+[ext_resource type="Theme" uid="uid://d4enr3o3c1o82" path="res://Resources/ui.tres" id="1_xgkor"]
+[ext_resource type="Script" path="res://Scripts/settings_menu.gd" id="2_4hei7"]
+[ext_resource type="StyleBox" uid="uid://b54hf5srakv6i" path="res://Resources/metalPanelStyleBox.tres" id="2_igdd8"]
+[ext_resource type="PackedScene" uid="uid://dkl0rgmspqnyr" path="res://Scenes/scene_change_button.tscn" id="2_r2nru"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xgkor")
+script = ExtResource("2_4hei7")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xgkor")
+theme_override_styles/panel = ExtResource("2_igdd8")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xgkor")
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_xgkor")
+theme_override_styles/panel = ExtResource("1_vuiva")
+
+[node name="SettingsMenu" type="MarginContainer" parent="MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xgkor")
+
+[node name="SceneChangeButton" parent="MarginContainer/Panel/SettingsMenu" instance=ExtResource("2_r2nru")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+mouse_filter = 1
+text = "Return"
+scene = "res://Scenes/main_menu.tscn"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/SettingsMenu"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("1_xgkor")
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/SettingsMenu/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_xgkor")
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/Panel/SettingsMenu/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_xgkor")
+theme_override_font_sizes/font_size = 12
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/SettingsMenu/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme = ExtResource("1_xgkor")
+alignment = 1
+
+[node name="MasterVolume" type="VBoxContainer" parent="MarginContainer/Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_xgkor")
+
+[node name="MasterVolumeLabel" type="Label" parent="MarginContainer/Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/MasterVolume"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_xgkor")
+theme_override_font_sizes/font_size = 12
+text = "Master"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/MasterVolume"]
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 2
+theme = ExtResource("1_xgkor")
+
+[node name="MasterVolume" type="HSlider" parent="MarginContainer/Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/MasterVolume/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_xgkor")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="MasterVolumeText" type="Label" parent="MarginContainer/Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/MasterVolume/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+theme = ExtResource("1_xgkor")
+theme_override_font_sizes/font_size = 12
+text = "100%"
+
+[node name="SFXVolume" type="VBoxContainer" parent="MarginContainer/Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_xgkor")
+
+[node name="SFXVolumeLabel" type="Label" parent="MarginContainer/Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/SFXVolume"]
+layout_mode = 2
+theme = ExtResource("1_xgkor")
+theme_override_font_sizes/font_size = 12
+text = "SFX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/SFXVolume"]
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 2
+theme = ExtResource("1_xgkor")
+
+[node name="SFXVolume" type="HSlider" parent="MarginContainer/Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/SFXVolume/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("1_xgkor")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="SFXVolumeText" type="Label" parent="MarginContainer/Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/SFXVolume/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+theme = ExtResource("1_xgkor")
+theme_override_font_sizes/font_size = 12
+text = "100%"
+
+[node name="MusicVolume" type="VBoxContainer" parent="MarginContainer/Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_xgkor")
+
+[node name="MusicVolumeLabel" type="Label" parent="MarginContainer/Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/MusicVolume"]
+layout_mode = 2
+theme = ExtResource("1_xgkor")
+theme_override_font_sizes/font_size = 12
+text = "Music"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/MusicVolume"]
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 2
+theme = ExtResource("1_xgkor")
+
+[node name="MusicVolume" type="HSlider" parent="MarginContainer/Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/MusicVolume/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("1_xgkor")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="MusicVolumeText" type="Label" parent="MarginContainer/Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/MusicVolume/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+theme = ExtResource("1_xgkor")
+theme_override_font_sizes/font_size = 12
+text = "100%"
+
+[node name="ArrowSetting" type="HBoxContainer" parent="MarginContainer/Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_xgkor")
+
+[node name="Label" type="Label" parent="MarginContainer/Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/ArrowSetting"]
+layout_mode = 2
+theme = ExtResource("1_xgkor")
+theme_override_font_sizes/font_size = 12
+text = "Point at nearest enemy"
+
+[node name="Arrow" type="CheckButton" parent="MarginContainer/Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/ArrowSetting"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("1_xgkor")
+button_pressed = true
+
+[node name="GraphicsSetting" type="HBoxContainer" parent="MarginContainer/Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_xgkor")
+
+[node name="Label2" type="Label" parent="MarginContainer/Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/GraphicsSetting"]
+layout_mode = 2
+theme = ExtResource("1_xgkor")
+theme_override_font_sizes/font_size = 12
+text = "Low graphics"
+
+[node name="Graphics" type="CheckButton" parent="MarginContainer/Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/GraphicsSetting"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("1_xgkor")
+
+[connection signal="pressed" from="MarginContainer/Panel/SettingsMenu/SceneChangeButton" to="MarginContainer/Panel" method="_on_scene_change_button_pressed"]
+[connection signal="value_changed" from="MarginContainer/Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/MasterVolume/HBoxContainer/MasterVolume" to="." method="_on_master_volume_value_changed"]
+[connection signal="value_changed" from="MarginContainer/Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/SFXVolume/HBoxContainer/SFXVolume" to="." method="_on_sfx_volume_value_changed"]
+[connection signal="value_changed" from="MarginContainer/Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/MusicVolume/HBoxContainer/MusicVolume" to="." method="_on_music_volume_value_changed"]
+[connection signal="toggled" from="MarginContainer/Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/ArrowSetting/Arrow" to="." method="_on_arrow_toggled"]
+[connection signal="toggled" from="MarginContainer/Panel/SettingsMenu/HBoxContainer/VBoxContainer/VBoxContainer/GraphicsSetting/Graphics" to="." method="_on_graphics_toggled"]

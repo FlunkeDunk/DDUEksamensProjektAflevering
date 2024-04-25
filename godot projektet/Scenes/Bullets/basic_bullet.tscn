@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://ckk8glg4cl4q5"]
+
+[ext_resource type="Shader" path="res://Scripts/outline.gdshader" id="2_fu2ta"]
+[ext_resource type="Shader" path="res://Scripts/bulletShader.gdshader" id="3_vhl5a"]
+[ext_resource type="Texture2D" uid="uid://bycw4wk8wlvy4" path="res://Assets/SimplePixelBullet.png" id="4_g4en5"]
+[ext_resource type="Texture2D" uid="uid://dep8t7cccar7s" path="res://Assets/lightGradient.png" id="5_pdk8s"]
+
+[sub_resource type="GDScript" id="GDScript_tx4pd"]
+script/source = "extends Projectile
+
+#func hitEnemy(entity: Node) -> void:
+	#super.hitEnemy(entity)
+	#
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s4sqr"]
+radius = 4.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kmn7y"]
+shader = ExtResource("2_fu2ta")
+shader_parameter/enabled = true
+shader_parameter/line_color = Color(0.964706, 0.937255, 0.67451, 1)
+shader_parameter/line_thickness = 1.0
+shader_parameter/modulate = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6w6x6"]
+render_priority = 0
+shader = ExtResource("3_vhl5a")
+
+[node name="BasicBullet" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 7
+gravity_scale = 0.0
+script = SubResource("GDScript_tx4pd")
+lifeTime = 0.75
+speed = 7.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_s4sqr")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_kmn7y")
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+pivot_offset = Vector2(20, 20)
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(40, 40)
+render_target_update_mode = 4
+
+[node name="BulletSprite" type="Sprite2D" parent="SubViewportContainer/SubViewport"]
+material = SubResource("ShaderMaterial_6w6x6")
+position = Vector2(20, 20)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("4_g4en5")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.6, 0.6)
+energy = 0.2
+shadow_enabled = true
+texture = ExtResource("5_pdk8s")
+texture_scale = 0.3

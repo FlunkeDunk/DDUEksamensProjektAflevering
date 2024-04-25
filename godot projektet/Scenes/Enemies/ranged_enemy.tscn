@@ -1,0 +1,169 @@
+[gd_scene load_steps=21 format=3 uid="uid://c8gmqrs2cj2ly"]
+
+[ext_resource type="Script" path="res://Scripts/RangedEnemy.gd" id="1_kbxkv"]
+[ext_resource type="Shader" path="res://Scripts/HitEffect.gdshader" id="2_gt82u"]
+[ext_resource type="PackedScene" uid="uid://bg3qft6hyb2fc" path="res://Scenes/Bullets/enemy_bullet.tscn" id="2_mbj4x"]
+[ext_resource type="Texture2D" uid="uid://bg8gnmvbs06u2" path="res://Assets/RangedEnemy/enemy_1_frame_1.png" id="4_86xcj"]
+[ext_resource type="Script" path="res://Scripts/stateMachine.gd" id="4_sij5n"]
+[ext_resource type="Script" path="res://Scripts/EnemyWanderState.gd" id="5_0kqs8"]
+[ext_resource type="Texture2D" uid="uid://co0rgvqtygkb2" path="res://Assets/RangedEnemy/enemy_1_frame_2.png" id="5_40cn4"]
+[ext_resource type="Script" path="res://Scripts/RangedEnemyChaseState.gd" id="6_d2l68"]
+[ext_resource type="Texture2D" uid="uid://dhhlb785bondn" path="res://Assets/RangedEnemy/enemy_1_frame_3.png" id="6_tgw3o"]
+[ext_resource type="Texture2D" uid="uid://bec3118rwx1ry" path="res://Assets/RangedEnemy/enemy_1_frame_4.png" id="7_p5a3p"]
+[ext_resource type="Texture2D" uid="uid://iw0q8323o6yv" path="res://Assets/RangedEnemy/enemy_1_frame_5.png" id="8_bc3kh"]
+[ext_resource type="Texture2D" uid="uid://d1asf23m6d5oq" path="res://Assets/RangedEnemy/enemy_1_frame_6.png" id="9_xbsh7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nt85j"]
+resource_local_to_scene = true
+shader = ExtResource("2_gt82u")
+shader_parameter/enabled = false
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a7f2b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_86xcj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_40cn4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_tgw3o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_p5a3p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_bc3kh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_xbsh7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lfdnj"]
+radius = 7.0
+
+[sub_resource type="Animation" id="Animation_bgwcm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_tw6sa"]
+resource_name = "idle"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_ro2jc"]
+resource_name = "run"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nuu0n"]
+_data = {
+"RESET": SubResource("Animation_bgwcm"),
+"idle": SubResource("Animation_tw6sa"),
+"run": SubResource("Animation_ro2jc")
+}
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_s5bqy"]
+polygon = PackedVector2Array(0, -6, 0, -7, 4, -7, 4, -6.12105, 5, -6, 5, -5, 4, -5, 4, -4, 3, -4, 3, -3, 2, -3, 2, 0, 3, 0, 3, 1, 4, 1, 4, 2, 5, 2, 5, 3, 2, 3, 2, 6, 3, 6, 3, 7, 4, 7, 4, 8, 2, 8, 2, 6, 1, 6, 0, 6, 0, 8, -2, 8, -2, 4, -2, 3, -3, 3, -3, 2, -4, 2, -4, 0, -3, 0, -3, -1, -2, -1, -2, -4, -1, -4, -1, -6)
+
+[node name="RangedEnemy" type="CharacterBody2D" node_paths=PackedStringArray("navigationAgent", "sprite", "rayCast")]
+collision_layer = 2
+collision_mask = 7
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_kbxkv")
+bulletNode = ExtResource("2_mbj4x")
+navigationAgent = NodePath("EnemyPathFinding")
+health = 3.0
+collisionDamage = 7.0
+moneyDrop = 4
+sprite = NodePath("Sprite2D")
+rayCast = NodePath("RayCast2D")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_nt85j")
+position = Vector2(2.38419e-07, -2.38419e-07)
+sprite_frames = SubResource("SpriteFrames_a7f2b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lfdnj")
+
+[node name="EnemyPathFinding" type="NavigationAgent2D" parent="."]
+target_desired_distance = 20.0
+
+[node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("starterState")]
+script = ExtResource("4_sij5n")
+starterState = NodePath("EnemyWanderState")
+
+[node name="EnemyWanderState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("enemy", "animationPlayer", "sprite", "rayCast", "chaseState")]
+process_mode = 1
+script = ExtResource("5_0kqs8")
+enemy = NodePath("../..")
+animationPlayer = NodePath("../../AnimationPlayer")
+sprite = NodePath("../../Sprite2D")
+rayCast = NodePath("../../RayCast2D")
+chaseState = NodePath("../RangedEnemyChaseState")
+
+[node name="RangedEnemyChaseState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("enemy", "animationPlayer", "rayCast", "fireRateTimer", "sprite")]
+process_mode = 1
+script = ExtResource("6_d2l68")
+enemy = NodePath("../..")
+animationPlayer = NodePath("../../AnimationPlayer")
+rayCast = NodePath("../../RayCast2D")
+fireRateTimer = NodePath("../../FireRateTimer")
+sprite = NodePath("../../Sprite2D")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nuu0n")
+}
+
+[node name="FireRateTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
+occluder = SubResource("OccluderPolygon2D_s5bqy")

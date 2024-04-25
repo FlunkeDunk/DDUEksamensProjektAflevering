@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Artifact" load_steps=4 format=3 uid="uid://q0nffyl54xjt"]
+
+[ext_resource type="Script" path="res://Scripts/ArtifactClass.gd" id="1_k282y"]
+[ext_resource type="Texture2D" uid="uid://bqgbifigxbi4m" path="res://Assets/ItemSprites/MoreEnergyArtifact_6x6.png" id="1_rcscx"]
+[ext_resource type="Script" path="res://Scripts/Artifacts/MoreEnergyScript.gd" id="2_aqb30"]
+
+[resource]
+script = ExtResource("1_k282y")
+nodeScript = ExtResource("2_aqb30")
+name = "Tesla coil"
+description = "All generators grant 1 more energy"
+inventorySprite = ExtResource("1_rcscx")
+price = 300
+rarity = 0

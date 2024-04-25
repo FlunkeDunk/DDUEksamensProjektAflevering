@@ -1,0 +1,224 @@
+[gd_scene load_steps=14 format=3 uid="uid://bos238hdogkak"]
+
+[ext_resource type="Script" path="res://Scripts/generator_menu.gd" id="1_ea5mx"]
+[ext_resource type="Script" path="res://Scripts/UpgradeButtons/upgrade1.gd" id="2_2nedg"]
+[ext_resource type="PackedScene" uid="uid://c14g61vexp744" path="res://Scenes/BatteryInformation.tscn" id="2_i20ss"]
+[ext_resource type="Script" path="res://Scripts/UpgradeButtons/Upgrade2.gd" id="3_g1tfs"]
+[ext_resource type="PackedScene" uid="uid://1l2e5jganxqv" path="res://Scenes/upgrades.tscn" id="3_tm7sg"]
+[ext_resource type="Script" path="res://Scripts/UpgradeButtons/Upgrade3.gd" id="4_8ji8x"]
+[ext_resource type="Script" path="res://Scripts/UpgradeButtons/EquipmentUpgrade1.gd" id="6_q5nyv"]
+[ext_resource type="Script" path="res://Scripts/GeneratorScripts/generatorBuff.gd" id="6_u35u4"]
+[ext_resource type="Script" path="res://Scripts/UpgradeButtons/FlatDamageUpgrade.gd" id="7_yljuy"]
+[ext_resource type="Script" path="res://Scripts/UpgradeButtons/MaxHealthUpgrade.gd" id="8_xs82g"]
+[ext_resource type="Script" path="res://Scripts/UpgradeButtons/EnergyGainUpgrade.gd" id="10_b01oq"]
+[ext_resource type="Script" path="res://Scripts/UpgradeButtons/PlayerSpeedUpgrade.gd" id="10_lkl0o"]
+[ext_resource type="Script" path="res://Scripts/UpgradeButtons/HealthRegenUpgrade.gd" id="11_01nad"]
+
+[node name="GeneratorMenu" type="TabContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ea5mx")
+
+[node name="EngineUpgrade" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="EngineUpgrade"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EngineUpgrade/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="VBoxContainer" parent="EngineUpgrade/MarginContainer/VBoxContainer" instance=ExtResource("2_i20ss")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EngineUpgrade/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EngineUpgrade/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="EngineUpgrade/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="Upgrades" parent="EngineUpgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("3_tm7sg")]
+layout_mode = 2
+script = ExtResource("2_2nedg")
+price = 10.0
+repeatable = true
+scaling = 1.0
+priceScaling = 1.2
+description = "+1 energy per second"
+
+[node name="Upgrades2" parent="EngineUpgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("3_tm7sg")]
+layout_mode = 2
+script = ExtResource("3_g1tfs")
+price = 100.0
+repeatable = true
+scaling = 2.0
+priceScaling = 5.0
+description = "x2 energy per second"
+
+[node name="GeneratorBuff" parent="EngineUpgrade/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("3_tm7sg")]
+layout_mode = 2
+script = ExtResource("6_u35u4")
+price = 500.0
+repeatable = true
+scaling = 0.05
+priceScaling = 10.0
+description = "Generators boost own production by 5%"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="EngineUpgrade/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BatteryUpgrades" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="BatteryUpgrades"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BatteryUpgrades/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="VBoxContainer2" parent="BatteryUpgrades/MarginContainer/VBoxContainer" instance=ExtResource("2_i20ss")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BatteryUpgrades/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 80
+
+[node name="MarginContainer3" type="MarginContainer" parent="BatteryUpgrades/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="BatteryUpgrades/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="Upgrades" parent="BatteryUpgrades/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3" instance=ExtResource("3_tm7sg")]
+layout_mode = 2
+script = ExtResource("4_8ji8x")
+price = 100.0
+repeatable = true
+scaling = 500.0
+priceScaling = 1.5
+description = "+500 battery capacity"
+
+[node name="MarginContainer2" type="MarginContainer" parent="BatteryUpgrades/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Equipment" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Equipment"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Equipment/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="VBoxContainer2" parent="Equipment/MarginContainer/VBoxContainer" instance=ExtResource("2_i20ss")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Equipment/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 80
+
+[node name="MarginContainer2" type="MarginContainer" parent="Equipment/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Equipment/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="Upgrades" parent="Equipment/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3" instance=ExtResource("3_tm7sg")]
+layout_mode = 2
+script = ExtResource("6_q5nyv")
+price = 150.0
+repeatable = true
+scaling = 0.05
+priceScaling = 1.25
+description = "5% extra damage"
+
+[node name="Upgrades2" parent="Equipment/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3" instance=ExtResource("3_tm7sg")]
+layout_mode = 2
+script = ExtResource("7_yljuy")
+price = 200.0
+repeatable = true
+scaling = 1.0
+priceScaling = 1.5
+description = "+1 flat damage (applied after multipliers)"
+
+[node name="Upgrades3" parent="Equipment/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3" instance=ExtResource("3_tm7sg")]
+layout_mode = 2
+script = ExtResource("8_xs82g")
+price = 300.0
+repeatable = true
+scaling = 20.0
+priceScaling = 1.15
+description = "+20 max health"
+
+[node name="Upgrades6" parent="Equipment/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3" instance=ExtResource("3_tm7sg")]
+layout_mode = 2
+script = ExtResource("10_lkl0o")
+price = 150.0
+repeatable = true
+scaling = 0.05
+priceScaling = 1.3
+description = "+5% Movespeed"
+
+[node name="Upgrades4" parent="Equipment/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3" instance=ExtResource("3_tm7sg")]
+layout_mode = 2
+script = ExtResource("10_b01oq")
+price = 500.0
+repeatable = true
+scaling = 0.1
+priceScaling = 1.3
+description = "+10% energy"
+
+[node name="Upgrades5" parent="Equipment/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3" instance=ExtResource("3_tm7sg")]
+layout_mode = 2
+script = ExtResource("11_01nad")
+price = 750.0
+repeatable = true
+scaling = 0.5
+priceScaling = 1.3
+description = "+50% health regen"
+
+[node name="MarginContainer" type="MarginContainer" parent="Equipment/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3

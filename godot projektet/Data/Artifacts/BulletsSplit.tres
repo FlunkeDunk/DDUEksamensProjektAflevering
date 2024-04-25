@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Artifact" load_steps=4 format=3 uid="uid://c5brs2occ6kaw"]
+
+[ext_resource type="Script" path="res://Scripts/ArtifactClass.gd" id="1_2cjjr"]
+[ext_resource type="Script" path="res://Scripts/Artifacts/BulletsSplitScript.gd" id="1_cmhao"]
+[ext_resource type="Texture2D" uid="uid://dfskirqatbuw0" path="res://Assets/ItemSprites/BulletsSplit_6x6.png" id="1_ihobh"]
+
+[resource]
+script = ExtResource("1_2cjjr")
+nodeScript = ExtResource("1_cmhao")
+name = "Splitting bullets"
+description = "Bullets split into two bullets with half damage when hitting an enemy"
+inventorySprite = ExtResource("1_ihobh")
+price = 300
+rarity = 0

@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://knhjlvnyy4q2"]
+
+[ext_resource type="FontFile" uid="uid://dy3wkb7nott0s" path="res://Assets/Fonts/PixelFJVerdana12pt.ttf" id="1_7lkc8"]
+
+[resource]
+default_font_size = 32
+/font_sizes/UIText = 32
+/fonts/UIText = ExtResource("1_7lkc8")

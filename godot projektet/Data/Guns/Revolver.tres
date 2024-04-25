@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Gun" load_steps=8 format=3 uid="uid://bw8iiie888g2h"]
+
+[ext_resource type="PackedScene" uid="uid://c5cgt8avnkbl3" path="res://Scenes/Bullets/plasma_bullet.tscn" id="1_6rl3w"]
+[ext_resource type="Texture2D" uid="uid://caktk6u5tpk7s" path="res://Assets/GunSprites/Revolver_16x16.png" id="2_2dfpx"]
+[ext_resource type="Script" path="res://Scripts/GunClass.gd" id="2_yukau"]
+[ext_resource type="Texture2D" uid="uid://b2skqqdsq6b47" path="res://Assets/Digital_panelx6.png" id="3_jkl5m"]
+[ext_resource type="AudioStream" uid="uid://cgaih0dt2bh1k" path="res://Assets/AudioFiles/laserReload.wav" id="4_ten8t"]
+[ext_resource type="AudioStream" uid="uid://mmqb4olnjkba" path="res://Assets/AudioFiles/handcanonShoot.wav" id="5_ivosk"]
+[ext_resource type="Texture2D" uid="uid://dduukgkggrp0o" path="res://Assets/GunSprites/Revolver_2_32x32.png" id="7_day7s"]
+
+[resource]
+script = ExtResource("2_yukau")
+damageMultiplier = 5.0
+bulletCount = 1
+fireRate = 3.0
+spread = 5
+burstSize = 1
+reloadTime = 2.0
+maxAmmo = 8
+lenght = 30
+offSet = Vector2(9, 0)
+sprite = ExtResource("7_day7s")
+muzzleFlash = ExtResource("3_jkl5m")
+shootSound = ExtResource("5_ivosk")
+reloadSound = ExtResource("4_ten8t")
+bulletNode = ExtResource("1_6rl3w")
+name = "Plasma hand-canon"
+description = "A powerful handcanon with heavy damage but low firerate"
+inventorySprite = ExtResource("2_2dfpx")
+price = 1000
+rarity = 0

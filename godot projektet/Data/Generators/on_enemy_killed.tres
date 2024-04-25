@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="GeneratorItem" load_steps=4 format=3 uid="uid://c8p5cu5dc375j"]
+
+[ext_resource type="Script" path="res://Scripts/GeneratorScripts/on_enemy_killed_script.gd" id="1_4irl2"]
+[ext_resource type="Texture2D" uid="uid://datcyl77coj7y" path="res://Assets/ItemSprites/on_enemy_killed_6x6.png" id="1_pb4x2"]
+[ext_resource type="Script" path="res://Scripts/GeneratorItemClass.gd" id="1_w1siy"]
+
+[resource]
+script = ExtResource("1_w1siy")
+energyGenerated = 8
+nodeScript = ExtResource("1_4irl2")
+name = "Cleaver"
+description = "Gain amount energy when an enemy dies"
+inventorySprite = ExtResource("1_pb4x2")
+price = 100
+rarity = 0

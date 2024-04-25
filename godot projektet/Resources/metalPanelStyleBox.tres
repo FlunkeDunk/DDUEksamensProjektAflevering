@@ -1,0 +1,12 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://b54hf5srakv6i"]
+
+[ext_resource type="Texture2D" uid="uid://c8xxw5w10gf6f" path="res://Assets/Metal_panelx6.png" id="1_mby36"]
+
+[resource]
+texture = ExtResource("1_mby36")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1

@@ -1,0 +1,192 @@
+[gd_scene load_steps=12 format=3 uid="uid://chaif7hkitoa3"]
+
+[ext_resource type="Script" path="res://Scripts/ParticleExplosion.gd" id="1_u03mq"]
+[ext_resource type="Texture2D" uid="uid://dep8t7cccar7s" path="res://Assets/lightGradient.png" id="2_asb7v"]
+
+[sub_resource type="Curve" id="Curve_s03nf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.23766, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ceocg"]
+curve = SubResource("Curve_s03nf")
+
+[sub_resource type="Curve" id="Curve_b4uqu"]
+max_value = 5.0
+_data = [Vector2(0.248629, 0), 0.0, 7.0, 0, 0, Vector2(1, 5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cof5d"]
+curve = SubResource("Curve_b4uqu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_blts1"]
+particle_flag_disable_z = true
+particle_flag_damping_as_friction = true
+angle_max = 360.0
+spread = 180.0
+initial_velocity_min = 400.0
+initial_velocity_max = 500.0
+angular_velocity_min = -100.0
+angular_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+damping_min = 0.4
+damping_max = 0.45
+attractor_interaction_enabled = false
+scale_max = 2.0
+scale_over_velocity_max = 60.0
+scale_over_velocity_curve = SubResource("CurveTexture_cof5d")
+color = Color(1, 0.537255, 0, 1)
+alpha_curve = SubResource("CurveTexture_ceocg")
+hue_variation_max = 0.14
+turbulence_enabled = true
+turbulence_noise_strength = 0.0
+turbulence_noise_speed_random = 0.0
+turbulence_influence_min = 0.02
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uahey"]
+radius = 9.0
+
+[sub_resource type="Animation" id="Animation_nqf41"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/CollisionShape2D:shape:radius")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [9.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area2D/PointLight2D:energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.3]
+}
+
+[sub_resource type="Animation" id="Animation_v8k5t"]
+resource_name = "explosion"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.407054),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area2D/CollisionShape2D:shape:radius")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0127239, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 16.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Area2D/PointLight2D:energy")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.262114),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.3, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_36mkk"]
+_data = {
+"RESET": SubResource("Animation_nqf41"),
+"explosion": SubResource("Animation_v8k5t")
+}
+
+[node name="ParticleExplosion" type="Node2D"]
+script = ExtResource("1_u03mq")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 500.0
+offset_bottom = 500.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1000, 1000)
+render_target_update_mode = 4
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="SubViewportContainer/SubViewport"]
+unique_name_in_owner = true
+position = Vector2(500, 500)
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_blts1")
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+
+[node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_uahey")
+
+[node name="PointLight2D" type="PointLight2D" parent="Area2D"]
+energy = 0.3
+shadow_enabled = true
+texture = ExtResource("2_asb7v")
+texture_scale = 0.3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_36mkk")
+}
+autoplay = "explosion"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

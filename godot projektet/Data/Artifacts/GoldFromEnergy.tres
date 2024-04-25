@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Artifact" load_steps=4 format=3 uid="uid://cy1uep5nr8h4o"]
+
+[ext_resource type="Script" path="res://Scripts/Artifacts/GoldFromEnergyScript.gd" id="1_cl15f"]
+[ext_resource type="Texture2D" uid="uid://bgany3avi3fa2" path="res://Assets/ItemSprites/GoldFromEnergy_6x6.png" id="1_uk2ji"]
+[ext_resource type="Script" path="res://Scripts/ArtifactClass.gd" id="2_q54kn"]
+
+[resource]
+script = ExtResource("2_q54kn")
+nodeScript = ExtResource("1_cl15f")
+name = "Stock market"
+description = "Gain more Spacedollars based on power in your ships battery"
+inventorySprite = ExtResource("1_uk2ji")
+price = 300
+rarity = 0

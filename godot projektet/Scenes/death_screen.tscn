@@ -1,0 +1,102 @@
+[gd_scene load_steps=7 format=3 uid="uid://ckwbcypyivj31"]
+
+[ext_resource type="Theme" uid="uid://d4enr3o3c1o82" path="res://Resources/ui.tres" id="1_feim5"]
+[ext_resource type="Script" path="res://Scripts/death_screen.gd" id="2_asc82"]
+[ext_resource type="PackedScene" uid="uid://dkl0rgmspqnyr" path="res://Scenes/scene_change_button.tscn" id="3_l500o"]
+[ext_resource type="PackedScene" uid="uid://naouubj5ea4w" path="res://Scenes/main_menu_button.tscn" id="5_6ke6p"]
+[ext_resource type="PackedScene" uid="uid://b2s4ijfbxvcf0" path="res://Scenes/leaderboard.tscn" id="5_h3qbk"]
+[ext_resource type="PackedScene" uid="uid://ctyl652byop1t" path="res://Scenes/submitscore_screen.tscn" id="6_y28nf"]
+
+[node name="DeathScreen" type="MarginContainer"]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_feim5")
+script = ExtResource("2_asc82")
+
+[node name="MainScreen" type="Panel" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_feim5")
+
+[node name="MarginContainer" type="MarginContainer" parent="MainScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_feim5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainScreen/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_feim5")
+
+[node name="Label" type="Label" parent="MainScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_feim5")
+text = "You died"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="MainScreen/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_feim5")
+text = "Score: 100"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="MainScreen/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_feim5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainScreen/MarginContainer/CenterContainer"]
+layout_mode = 2
+theme = ExtResource("1_feim5")
+
+[node name="RetryButton" parent="MainScreen/MarginContainer/CenterContainer/VBoxContainer" instance=ExtResource("3_l500o")]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Retry"
+scene = "res://Scenes/ShipMenu.tscn"
+
+[node name="LeaderboardButton" type="Button" parent="MainScreen/MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_feim5")
+text = "Leaderboard"
+
+[node name="SubmitScoreButton" type="Button" parent="MainScreen/MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_feim5")
+text = "Submit score"
+
+[node name="MainMenuButton" parent="MainScreen/MarginContainer/CenterContainer/VBoxContainer" instance=ExtResource("5_6ke6p")]
+layout_mode = 2
+
+[node name="Leaderboard" parent="." instance=ExtResource("5_h3qbk")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+ownScene = false
+
+[node name="Button" type="Button" parent="Leaderboard/MarginContainer" index="2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme = ExtResource("1_feim5")
+text = "Close"
+
+[node name="SubmitscoreScreen" parent="." instance=ExtResource("6_y28nf")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[connection signal="pressed" from="MainScreen/MarginContainer/CenterContainer/VBoxContainer/LeaderboardButton" to="." method="_on_leaderboard_button_pressed"]
+[connection signal="pressed" from="MainScreen/MarginContainer/CenterContainer/VBoxContainer/SubmitScoreButton" to="." method="_on_submit_score_button_pressed"]
+[connection signal="pressed" from="Leaderboard/MarginContainer/Button" to="." method="hideLeaderboard"]
+[connection signal="pressed" from="SubmitscoreScreen/MarginContainer/ReturnButton" to="." method="_on_return_button_pressed"]
+
+[editable path="Leaderboard"]
+[editable path="SubmitscoreScreen"]

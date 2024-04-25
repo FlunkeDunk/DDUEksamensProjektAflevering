@@ -1,0 +1,980 @@
+[gd_scene load_steps=10 format=3 uid="uid://n58n1ikoxy7p"]
+
+[ext_resource type="Script" path="res://Scripts/InventoryDisplay.gd" id="1_2e2np"]
+[ext_resource type="PackedScene" uid="uid://cr3qpabu7kjdt" path="res://Scenes/InventorySpaces/inventory_space_effect.tscn" id="1_52i3u"]
+[ext_resource type="StyleBox" uid="uid://b54hf5srakv6i" path="res://Resources/metalPanelStyleBox.tres" id="2_dsjda"]
+[ext_resource type="StyleBox" uid="uid://bqidy4l20f2ob" path="res://Resources/digitalPanelStyleBox.tres" id="2_iu0hq"]
+[ext_resource type="PackedScene" uid="uid://yvmslwope6vf" path="res://Scenes/InventorySpaces/inventory_space_gun.tscn" id="4_qn2y7"]
+[ext_resource type="PackedScene" uid="uid://dlm7moymcbumj" path="res://Scenes/InventorySpaces/inventory_space_generator.tscn" id="5_dargt"]
+[ext_resource type="Theme" uid="uid://d4enr3o3c1o82" path="res://Resources/ui.tres" id="5_qx75j"]
+[ext_resource type="PackedScene" uid="uid://7nymbh1criqy" path="res://Scenes/combinationScene.tscn" id="5_xdgls"]
+[ext_resource type="PackedScene" uid="uid://do6di0msgf6la" path="res://Scenes/InventorySpaces/inventory_space_artifact.tscn" id="6_fq5da"]
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_qx75j")
+script = ExtResource("1_2e2np")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_qx75j")
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 48
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+theme_override_constants/margin_left = -12
+theme_override_constants/margin_top = -12
+theme_override_constants/margin_right = -12
+theme_override_constants/margin_bottom = -12
+
+[node name="Panel" type="Panel" parent="MarginContainer/MarginContainer2"]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+theme_override_styles/panel = ExtResource("2_dsjda")
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+theme_override_styles/panel = ExtResource("2_iu0hq")
+
+[node name="Inventory" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 0
+theme = ExtResource("5_qx75j")
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Inventory"]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+theme_override_constants/separation = 18
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/Inventory/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("5_qx75j")
+alignment = 1
+
+[node name="CombinationsText" type="Label" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+theme_override_font_sizes/font_size = 28
+text = "Combinations"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 480)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("5_qx75j")
+horizontal_scroll_mode = 0
+
+[node name="Equipped" type="VBoxContainer" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer2/ScrollContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(190, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
+theme = ExtResource("5_qx75j")
+theme_override_constants/separation = 42
+alignment = 1
+
+[node name="Combination" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer2/ScrollContainer/Equipped" instance=ExtResource("5_xdgls")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="Combination4" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer2/ScrollContainer/Equipped" instance=ExtResource("5_xdgls")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="Combination5" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer2/ScrollContainer/Equipped" instance=ExtResource("5_xdgls")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="EquippedGunContainer" type="VBoxContainer" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme = ExtResource("5_qx75j")
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer2/EquippedGunContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("5_qx75j")
+theme_override_font_sizes/font_size = 28
+text = "Equipped Gun"
+horizontal_alignment = 1
+
+[node name="EquippedGun" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer2/EquippedGunContainer" instance=ExtResource("4_qn2y7")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("5_qx75j")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Inventory/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="MainInventories" type="HBoxContainer" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+theme_override_constants/separation = 36
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+theme = ExtResource("5_qx75j")
+
+[node name="TriggersText" type="Label" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("5_qx75j")
+theme_override_font_sizes/font_size = 28
+text = "Generators"
+horizontal_alignment = 1
+clip_text = true
+
+[node name="GeneratorScrollContainer" type="ScrollContainer" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer"]
+custom_minimum_size = Vector2(0, 480)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("5_qx75j")
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="GeneratorVBoxContainer" type="VBoxContainer" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer"]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="Generators" type="GridContainer" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme = ExtResource("5_qx75j")
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 6
+columns = 3
+
+[node name="InventorySpaceTrigger" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger2" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger3" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger4" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger5" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger6" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger7" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger8" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger9" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger10" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger11" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger12" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger13" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger14" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger15" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger16" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger17" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger18" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger19" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger20" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger21" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger22" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger23" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger24" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger25" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger26" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger27" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger28" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger29" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger30" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger31" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger32" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger33" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger34" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger35" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger36" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger37" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger38" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger39" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger40" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger41" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger42" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger43" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger44" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger45" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger46" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger47" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger48" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger49" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger50" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger51" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger52" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger53" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger54" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger55" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger56" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger57" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger58" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger59" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger60" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger61" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger62" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger63" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger64" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger65" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer/GeneratorScrollContainer/GeneratorVBoxContainer/Generators" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories"]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="EffectsText" type="Label" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("5_qx75j")
+theme_override_font_sizes/font_size = 28
+text = "Effects"
+horizontal_alignment = 1
+
+[node name="EffectScrollContainer" type="ScrollContainer" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 480)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("5_qx75j")
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme = ExtResource("5_qx75j")
+
+[node name="Effects" type="GridContainer" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("5_qx75j")
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 6
+columns = 3
+
+[node name="InventorySpace" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace2" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace3" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace4" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace5" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace6" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace7" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace8" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace9" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace10" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace11" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace12" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace13" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace14" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace15" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace16" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace17" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace18" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace19" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace20" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace21" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace22" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace23" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace24" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace25" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace26" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace27" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace28" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace29" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace30" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace31" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace32" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace33" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace34" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace35" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace36" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace37" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace38" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace39" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace40" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace41" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace42" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace43" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace44" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace45" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace46" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace47" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace48" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace49" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace50" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace51" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace52" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace53" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace54" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace55" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace56" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace57" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace58" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace59" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace60" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace61" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace62" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace63" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace64" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpace65" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer3/EffectScrollContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories"]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="GunText" type="Label" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("5_qx75j")
+theme_override_font_sizes/font_size = 28
+text = "Guns
+"
+horizontal_alignment = 1
+
+[node name="GunScrollContainer" type="ScrollContainer" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 480)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("5_qx75j")
+horizontal_scroll_mode = 0
+
+[node name="GunVBoxContainer" type="VBoxContainer" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer"]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="Guns" type="GridContainer" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme = ExtResource("5_qx75j")
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 6
+
+[node name="InventorySpaceTrigger" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger2" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger3" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger4" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger5" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger6" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger7" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger8" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger9" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger10" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger11" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger12" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger13" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger14" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger15" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger16" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger17" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger18" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger19" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger20" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger21" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger22" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger23" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger24" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger25" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger26" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger27" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger28" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger29" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger30" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger31" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger32" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger33" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger34" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger35" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger36" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger37" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger38" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger39" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger40" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger41" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger42" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger43" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger44" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger45" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger46" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger47" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger48" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/MainInventories/VBoxContainer2/GunScrollContainer/GunVBoxContainer/Guns" instance=ExtResource("4_qn2y7")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("5_qx75j")
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="TriggersText" type="Label" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("5_qx75j")
+theme_override_font_sizes/font_size = 28
+text = "Artifacts"
+clip_text = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 104)
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+vertical_scroll_mode = 0
+
+[node name="Artifacts" type="HBoxContainer" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("5_qx75j")
+theme_override_constants/separation = 6
+
+[node name="InventorySpaceTrigger" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/VBoxContainer/ScrollContainer/Artifacts" instance=ExtResource("6_fq5da")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="InventorySpaceTrigger2" parent="MarginContainer/Inventory/HBoxContainer/VBoxContainer/VBoxContainer/ScrollContainer/Artifacts" instance=ExtResource("6_fq5da")]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="ItemStats" type="Panel" parent="MarginContainer/Inventory/HBoxContainer"]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("5_qx75j")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Inventory/HBoxContainer/ItemStats"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_qx75j")
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Inventory/HBoxContainer/ItemStats/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+
+[node name="ItemName" type="Label" parent="MarginContainer/Inventory/HBoxContainer/ItemStats/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ItemDescription" type="Label" parent="MarginContainer/Inventory/HBoxContainer/ItemStats/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+theme_override_font_sizes/font_size = 18
+autowrap_mode = 3
+
+[node name="ItemStats" type="Label" parent="MarginContainer/Inventory/HBoxContainer/ItemStats/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("5_qx75j")
+theme_override_font_sizes/font_size = 18
+text = "+5"

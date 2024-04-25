@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b4rnwi0o6qqrj"]
+
+[ext_resource type="FontFile" uid="uid://dy3wkb7nott0s" path="res://Assets/Fonts/PixelFJVerdana12pt.ttf" id="1_t2ar8"]
+
+[resource]
+default_font = ExtResource("1_t2ar8")
+Label/font_sizes/font_size = 50

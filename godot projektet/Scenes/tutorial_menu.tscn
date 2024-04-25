@@ -1,0 +1,102 @@
+[gd_scene load_steps=9 format=3 uid="uid://cmu6iietivohc"]
+
+[ext_resource type="Script" path="res://Scripts/tutorial_menu.gd" id="1_yskbq"]
+[ext_resource type="StyleBox" uid="uid://b54hf5srakv6i" path="res://Resources/metalPanelStyleBox.tres" id="2_iv6mc"]
+[ext_resource type="PackedScene" uid="uid://cdq3k72w3ykeg" path="res://Scenes/planet_selection.tscn" id="2_w88k2"]
+[ext_resource type="Script" path="res://Scripts/ShipMenuCamera.gd" id="3_rivx4"]
+[ext_resource type="Texture2D" uid="uid://b2skqqdsq6b47" path="res://Assets/Digital_panelx6.png" id="4_q2ikm"]
+[ext_resource type="Theme" uid="uid://d4enr3o3c1o82" path="res://Resources/ui.tres" id="5_ceaim"]
+
+[sub_resource type="Theme" id="Theme_h5yb5"]
+HBoxContainer/constants/separation = 240
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6d1t6"]
+texture = ExtResource("4_q2ikm")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(2.00392, 0.615686, 0.34902, 1)
+
+[node name="TutorialMenu" type="MarginContainer"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_yskbq")
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(0.352941, 0.352941, 0.439216, 1)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_iv6mc")
+
+[node name="VBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme = SubResource("Theme_h5yb5")
+
+[node name="Radar" parent="VBoxContainer" instance=ExtResource("2_w88k2")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Camera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+offset = Vector2(960, 540)
+script = ExtResource("3_rivx4")
+
+[node name="TutorialCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TutorialContainer" type="MarginContainer" parent="TutorialCanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 60
+
+[node name="TutorialPanel" type="PanelContainer" parent="TutorialCanvasLayer/TutorialContainer"]
+custom_minimum_size = Vector2(400, 600)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_6d1t6")
+
+[node name="MarginContainer" type="MarginContainer" parent="TutorialCanvasLayer/TutorialContainer/TutorialPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TutorialCanvasLayer/TutorialContainer/TutorialPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="TitleLabel" type="Label" parent="TutorialCanvasLayer/TutorialContainer/TutorialPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Title"
+horizontal_alignment = 1
+
+[node name="TextLabel" type="Label" parent="TutorialCanvasLayer/TutorialContainer/TutorialPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+text = "Lorem ipsium dolar sit amet Lorem ipsium dolar sit amet Lorem ipsium dolar sit amet Lorem ipsium dolar sit amet Lorem ipsium dolar sit amet Lorem ipsium dolar sit amet Lorem Lorem ipsium dolar sit amet Lorem ipsium dolar sit amet Lorem ipsium dolar sit amet Lorem ipsium dolar sit amet Lorem ipsium dolar sit Lorem  Lorem ipsium  Lorem ipsium  Lorem ipsium dolar sit  Lorem ipsium dolar sit amet"
+autowrap_mode = 3
+
+[node name="TutorialButton" type="Button" parent="TutorialCanvasLayer/TutorialContainer/TutorialPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("5_ceaim")
+text = "Close"

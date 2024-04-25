@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Artifact" load_steps=4 format=3 uid="uid://dl5wgi8mvy4a6"]
+
+[ext_resource type="Script" path="res://Scripts/ArtifactClass.gd" id="1_j1ton"]
+[ext_resource type="Texture2D" uid="uid://7xjhjht7ouw" path="res://Assets/ItemSprites/CheaperEffectsArtifact_6x6.png" id="1_jry52"]
+[ext_resource type="Script" path="res://Scripts/Artifacts/CheaperEffectsScript.gd" id="2_gt30f"]
+
+[resource]
+script = ExtResource("1_j1ton")
+nodeScript = ExtResource("2_gt30f")
+name = "Credit card"
+description = "All effects are 1 energy cheaper"
+inventorySprite = ExtResource("1_jry52")
+price = 300
+rarity = 1

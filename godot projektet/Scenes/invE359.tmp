@@ -1,0 +1,241 @@
+[gd_scene load_steps=5 format=3 uid="uid://n58n1ikoxy7p"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory.gd" id="1_2e2np"]
+[ext_resource type="PackedScene" uid="uid://cr3qpabu7kjdt" path="res://Scenes/InventorySpaces/inventory_space_effect.tscn" id="1_52i3u"]
+[ext_resource type="PackedScene" uid="uid://dlm7moymcbumj" path="res://Scenes/InventorySpaces/inventory_space_trigger.tscn" id="5_dargt"]
+[ext_resource type="PackedScene" uid="uid://7nymbh1criqy" path="res://Scenes/combinationScene.tscn" id="5_xdgls"]
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2e2np")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="ColorRect" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Inventory" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="HBoxContainer" parent="MarginContainer/Inventory"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/Inventory/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="Equipped" type="HBoxContainer" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+theme_override_constants/separation = 40
+
+[node name="Combination" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer2/Equipped" instance=ExtResource("5_xdgls")]
+layout_mode = 2
+
+[node name="Combination2" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer2/Equipped" instance=ExtResource("5_xdgls")]
+layout_mode = 2
+
+[node name="Combination3" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer2/Equipped" instance=ExtResource("5_xdgls")]
+layout_mode = 2
+
+[node name="Artifacts" type="GridContainer" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Inventory/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_constants/separation = 20
+
+[node name="EffectsText" type="Label" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 60
+text = "Effects"
+horizontal_alignment = 1
+
+[node name="Effects" type="GridContainer" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 5
+
+[node name="InventorySpace" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+
+[node name="InventorySpace2" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+
+[node name="InventorySpace3" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+
+[node name="InventorySpace4" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+
+[node name="InventorySpace5" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Effects" instance=ExtResource("1_52i3u")]
+layout_mode = 2
+
+[node name="TriggersText" type="Label" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 60
+text = "Triggers"
+horizontal_alignment = 1
+
+[node name="Triggers" type="GridContainer" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 5
+
+[node name="InventorySpaceTrigger" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger2" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger3" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger4" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger5" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger6" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger7" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger8" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger9" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger10" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger11" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger12" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger13" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger14" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger15" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger16" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger17" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger18" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger19" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger20" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger21" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger22" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger23" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger24" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger25" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger26" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger27" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger28" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger29" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="InventorySpaceTrigger30" parent="MarginContainer/Inventory/VBoxContainer/VBoxContainer/Triggers" instance=ExtResource("5_dargt")]
+layout_mode = 2
+
+[node name="ItemStats" type="Panel" parent="MarginContainer/Inventory/VBoxContainer"]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Inventory/VBoxContainer/ItemStats"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemName" type="Label" parent="MarginContainer/Inventory/VBoxContainer/ItemStats/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Item Name"
+horizontal_alignment = 1
+
+[node name="ItemDescription" type="Label" parent="MarginContainer/Inventory/VBoxContainer/ItemStats/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint o"
+autowrap_mode = 2
+
+[node name="ItemStats" type="Label" parent="MarginContainer/Inventory/VBoxContainer/ItemStats/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "+5"

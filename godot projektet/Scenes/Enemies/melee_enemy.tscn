@@ -1,0 +1,159 @@
+[gd_scene load_steps=20 format=3 uid="uid://bujoejw73y5nq"]
+
+[ext_resource type="Script" path="res://Scripts/melee_enemy.gd" id="1_00a0i"]
+[ext_resource type="Shader" path="res://Scripts/HitEffect.gdshader" id="2_6xc0e"]
+[ext_resource type="Texture2D" uid="uid://bcevp55htyd0" path="res://Assets/MeleeEnemy/enemy_2_frame_1.png" id="3_kyixq"]
+[ext_resource type="Script" path="res://Scripts/stateMachine.gd" id="4_54oa1"]
+[ext_resource type="Script" path="res://Scripts/EnemyChaseState.gd" id="4_h71f1"]
+[ext_resource type="Texture2D" uid="uid://dj2ncuhlsy74d" path="res://Assets/MeleeEnemy/enemy_2_frame_2.png" id="4_tj6ul"]
+[ext_resource type="Script" path="res://Scripts/EnemyWanderState.gd" id="5_5ce64"]
+[ext_resource type="Texture2D" uid="uid://183i7wy444fu" path="res://Assets/MeleeEnemy/enemy_2_frame_3.png" id="5_47r6f"]
+[ext_resource type="Texture2D" uid="uid://cn5xkso4l3fs7" path="res://Assets/MeleeEnemy/enemy_2_frame_4.png" id="6_imymr"]
+[ext_resource type="Texture2D" uid="uid://cp3ou5xahof61" path="res://Assets/MeleeEnemy/enemy_2_frame_5.png" id="7_dq8sk"]
+[ext_resource type="Texture2D" uid="uid://cwgwshwi8cl7n" path="res://Assets/MeleeEnemy/enemy_2_frame_6.png" id="8_frs0o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ijfxp"]
+resource_local_to_scene = true
+shader = ExtResource("2_6xc0e")
+shader_parameter/enabled = false
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yu1ln"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_kyixq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_tj6ul")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_47r6f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_imymr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_dq8sk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_frs0o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bqnqd"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_sy2el"]
+resource_name = "run"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_qjlpy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_3up18"]
+resource_name = "idle"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5cnt6"]
+_data = {
+"RESET": SubResource("Animation_qjlpy"),
+"idle": SubResource("Animation_3up18"),
+"run": SubResource("Animation_sy2el")
+}
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_xvvqy"]
+polygon = PackedVector2Array(9, -2, 9, 1, 6, 1, 6, 2, 5, 2, 5, 3, 1, 3, 1, 2, -2, 2, -2, 3, -6, 3, -6, 1, -5, 1, -5, 0, 3, 0, 3, -1, 5, -1, 5, -2)
+
+[node name="MeleeEnemy" type="CharacterBody2D" node_paths=PackedStringArray("navigationAgent", "sprite", "rayCast")]
+collision_layer = 2
+collision_mask = 7
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_00a0i")
+navigationAgent = NodePath("EnemyPathFinding")
+health = 4.0
+collisionDamage = 7.0
+moneyDrop = 3
+sprite = NodePath("Sprite2D")
+rayCast = NodePath("RayCast2D")
+speed = 70
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_ijfxp")
+sprite_frames = SubResource("SpriteFrames_yu1ln")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bqnqd")
+
+[node name="EnemyPathFinding" type="NavigationAgent2D" parent="."]
+target_desired_distance = 20.0
+
+[node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("starterState")]
+script = ExtResource("4_54oa1")
+starterState = NodePath("EnemyWanderState")
+
+[node name="EnemyWanderState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("enemy", "animationPlayer", "sprite", "rayCast", "chaseState")]
+script = ExtResource("5_5ce64")
+enemy = NodePath("../..")
+animationPlayer = NodePath("../../AnimationPlayer")
+sprite = NodePath("../../Sprite2D")
+rayCast = NodePath("../../RayCast2D")
+chaseState = NodePath("../EnemyChaseState")
+
+[node name="EnemyChaseState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("enemy", "animationPlayer", "sprite")]
+script = ExtResource("4_h71f1")
+enemy = NodePath("../..")
+animationPlayer = NodePath("../../AnimationPlayer")
+sprite = NodePath("../../Sprite2D")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5cnt6")
+}
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_xvvqy")

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwi4lg4x7ua1w"]
+
+[ext_resource type="PackedScene" uid="uid://d2xs0xu5777ce" path="res://Scenes/Planets/planet.tscn" id="1_c1lgt"]
+[ext_resource type="PackedScene" uid="uid://ubsk1u4spuu8" path="res://Scenes/Planets/space_station.tscn" id="2_p2bhu"]
+
+[node name="TutorialPlanets" type="Node2D"]
+
+[node name="Planet" parent="." instance=ExtResource("1_c1lgt")]
+position = Vector2(1362, 516)
+
+[node name="Planet2" parent="." instance=ExtResource("1_c1lgt")]
+position = Vector2(970, 473)
+
+[node name="SpaceStation" parent="." instance=ExtResource("2_p2bhu")]
+position = Vector2(1720, 547)

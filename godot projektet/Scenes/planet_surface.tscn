@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=3 uid="uid://6s14l6kbfb7s"]
+
+[ext_resource type="PackedScene" uid="uid://c56yq85sm08jh" path="res://Scenes/player.tscn" id="1_00s6g"]
+[ext_resource type="PackedScene" uid="uid://dsqjyahdfnnvi" path="res://Scenes/wave_function_collapse.tscn" id="1_pkh8v"]
+[ext_resource type="Script" path="res://Scripts/planetSurface.gd" id="1_swv5s"]
+[ext_resource type="PackedScene" uid="uid://ckwbcypyivj31" path="res://Scenes/death_screen.tscn" id="2_lrl4p"]
+[ext_resource type="PackedScene" uid="uid://dbblh0muk6ok8" path="res://Scenes/spawner.tscn" id="2_wk6im"]
+[ext_resource type="Script" path="res://Scripts/CombinationManger.gd" id="5_ilaiu"]
+
+[sub_resource type="Environment" id="Environment_0adsi"]
+background_mode = 3
+tonemap_mode = 3
+tonemap_exposure = 0.8
+tonemap_white = 1.2
+
+[node name="PlanetSurface" type="Node2D"]
+script = ExtResource("1_swv5s")
+deathScreen = ExtResource("2_lrl4p")
+
+[node name="Spawner" parent="." instance=ExtResource("2_wk6im")]
+z_index = 1
+
+[node name="WaveFunctionCollapse" parent="." instance=ExtResource("1_pkh8v")]
+
+[node name="Player" parent="." node_paths=PackedStringArray("spawner") instance=ExtResource("1_00s6g")]
+position = Vector2(161, 89)
+spawner = NodePath("../Spawner")
+
+[node name="CombinationManager" type="Node2D" parent="."]
+script = ExtResource("5_ilaiu")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0adsi")

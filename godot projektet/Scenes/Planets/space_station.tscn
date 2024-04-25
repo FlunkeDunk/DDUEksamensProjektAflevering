@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://ubsk1u4spuu8"]
+
+[ext_resource type="Script" path="res://Scripts/space_station.gd" id="1_ximtp"]
+[ext_resource type="AudioStream" uid="uid://b6h0y6tqyjci3" path="res://Assets/AudioFiles/UIBlip.mp3" id="2_g4nrc"]
+[ext_resource type="Shader" path="res://Scripts/outline.gdshader" id="2_ys4i3"]
+[ext_resource type="Texture2D" uid="uid://bqjot5epqlapl" path="res://Assets/SatelliteSprite.png" id="4_ysit0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3v0v"]
+size = Vector2(90, 90)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_egqsi"]
+resource_local_to_scene = true
+shader = ExtResource("2_ys4i3")
+shader_parameter/enabled = null
+shader_parameter/line_color = Color(0.988235, 0.811765, 0, 1)
+shader_parameter/line_thickness = 6.0
+shader_parameter/modulate = Color(1, 1, 1, 1)
+
+[node name="SpaceStation" type="Node2D"]
+script = ExtResource("1_ximtp")
+sound = ExtResource("2_g4nrc")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_d3v0v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_egqsi")
+texture = ExtResource("4_ysit0")

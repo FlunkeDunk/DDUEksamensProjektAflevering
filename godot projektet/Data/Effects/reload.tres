@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EffectItem" load_steps=4 format=3 uid="uid://dso0afguay6up"]
+
+[ext_resource type="Script" path="res://Scripts/EffectItemClass.gd" id="1_p84fk"]
+[ext_resource type="Texture2D" uid="uid://bn7ufnlvvhmwr" path="res://Assets/ItemSprites/reload_6x6.png" id="1_x7y8n"]
+[ext_resource type="Script" path="res://Scripts/EffectScripts/reload_script.gd" id="2_2a63g"]
+
+[resource]
+script = ExtResource("1_p84fk")
+energyNeeded = 30
+nodeScript = ExtResource("2_2a63g")
+name = "Ammo pack"
+description = "Reloads your gun instantly"
+inventorySprite = ExtResource("1_x7y8n")
+price = 100
+rarity = 0

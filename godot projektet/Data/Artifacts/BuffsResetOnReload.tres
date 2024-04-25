@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Artifact" load_steps=4 format=3 uid="uid://doxfau07hjesk"]
+
+[ext_resource type="Script" path="res://Scripts/Artifacts/BuffsResetOnReloadScript.gd" id="1_5i1ni"]
+[ext_resource type="Texture2D" uid="uid://dmr7lisvdmdk7" path="res://Assets/ItemSprites/BuffsResetOnReload.png" id="1_jtc2r"]
+[ext_resource type="Script" path="res://Scripts/ArtifactClass.gd" id="1_pj08n"]
+
+[resource]
+script = ExtResource("1_pj08n")
+nodeScript = ExtResource("1_5i1ni")
+name = "Hourglass"
+description = "Buffs now last until you reload "
+inventorySprite = ExtResource("1_jtc2r")
+price = 300
+rarity = 0

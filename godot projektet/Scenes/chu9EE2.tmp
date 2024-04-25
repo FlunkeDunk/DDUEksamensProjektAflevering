@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://w7sgspwpcm8w"]
+
+[ext_resource type="Script" path="res://Scenes/chunkArea.gd" id="1_l5o5q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_08tbm"]
+size = Vector2(200, 200)
+
+[node name="ChunkArea" type="Area2D"]
+script = ExtResource("1_l5o5q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_08tbm")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

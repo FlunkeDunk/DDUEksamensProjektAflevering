@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Artifact" load_steps=4 format=3 uid="uid://uwj8j3p2123g"]
+
+[ext_resource type="Texture2D" uid="uid://ciq8fbfkqm4ym" path="res://Assets/ItemSprites/FullHealthDamage_6x6.png" id="1_0yqtq"]
+[ext_resource type="Script" path="res://Scripts/Artifacts/FullHealthDamageScript.gd" id="1_r5ja8"]
+[ext_resource type="Script" path="res://Scripts/ArtifactClass.gd" id="1_w3t25"]
+
+[resource]
+script = ExtResource("1_w3t25")
+nodeScript = ExtResource("1_r5ja8")
+name = "Hammer"
+description = "Enemies with full health take double damage"
+inventorySprite = ExtResource("1_0yqtq")
+price = 300
+rarity = 0

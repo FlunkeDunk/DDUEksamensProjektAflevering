@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Artifact" load_steps=4 format=3 uid="uid://hm5c5edo3fhs"]
+
+[ext_resource type="Script" path="res://Scripts/Artifacts/DamageScaleWithDistanceScript.gd" id="1_7ijg2"]
+[ext_resource type="Texture2D" uid="uid://de4j6qncheobl" path="res://Assets/ItemSprites/DamageScaleWithDistance_6x6.png" id="1_noogb"]
+[ext_resource type="Script" path="res://Scripts/ArtifactClass.gd" id="1_xp00f"]
+
+[resource]
+script = ExtResource("1_xp00f")
+nodeScript = ExtResource("1_7ijg2")
+name = "Sniper scope"
+description = "Bullets deal more damage based on distance travelled"
+inventorySprite = ExtResource("1_noogb")
+price = 300
+rarity = 0

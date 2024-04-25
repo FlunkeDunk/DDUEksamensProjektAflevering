@@ -1,0 +1,309 @@
+[gd_scene load_steps=17 format=3 uid="uid://dbcttwbyelpdh"]
+
+[ext_resource type="StyleBox" uid="uid://bqidy4l20f2ob" path="res://Resources/digitalPanelStyleBox.tres" id="1_80vh7"]
+[ext_resource type="StyleBox" uid="uid://b54hf5srakv6i" path="res://Resources/metalPanelStyleBox.tres" id="1_jibrv"]
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_ra628"]
+[ext_resource type="Texture2D" uid="uid://c3vgga5j5p6yo" path="res://Assets/spaceBackground.jpg" id="2_1hu4k"]
+[ext_resource type="PackedScene" uid="uid://dkl0rgmspqnyr" path="res://Scenes/scene_change_button.tscn" id="2_gd8dd"]
+[ext_resource type="Theme" uid="uid://b4rnwi0o6qqrj" path="res://Resources/HeaderTheme.tres" id="2_kkyw2"]
+[ext_resource type="Script" path="res://Scripts/MainMenuBackground.gd" id="3_p31ri"]
+[ext_resource type="Script" path="res://Scripts/QuitButton.gd" id="3_unk5y"]
+[ext_resource type="Texture2D" uid="uid://b2skqqdsq6b47" path="res://Assets/Digital_panelx6.png" id="6_4jq2y"]
+[ext_resource type="FontFile" uid="uid://dy3wkb7nott0s" path="res://Assets/Fonts/PixelFJVerdana12pt.ttf" id="7_f6g1p"]
+[ext_resource type="Theme" uid="uid://d4enr3o3c1o82" path="res://Resources/ui.tres" id="8_imfwd"]
+[ext_resource type="Texture2D" uid="uid://bg63i810jtsj3" path="res://Assets/bootsplashNoBackground.png" id="11_8krfh"]
+[ext_resource type="Texture2D" uid="uid://c2jrkhki3avr3" path="res://Assets/bootsplash.png" id="11_ixub4"]
+[ext_resource type="Script" path="res://Scripts/BootSplash.gd" id="12_qit47"]
+[ext_resource type="Script" path="res://Scripts/BootPlanet.gd" id="14_uif0o"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wh0aq"]
+texture = ExtResource("6_4jq2y")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(1.2, 1.2, 1.2, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ra628")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(0.67, 0.67, 0.67, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -99.0
+offset_top = -259.0
+offset_right = -99.0
+offset_bottom = -259.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(6, 6)
+texture = ExtResource("2_1hu4k")
+stretch_mode = 1
+flip_v = true
+script = ExtResource("3_p31ri")
+
+[node name="MainMenu" type="Panel" parent="."]
+custom_minimum_size = Vector2(606, 900)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -304.0
+offset_top = -408.0
+offset_right = 302.0
+offset_bottom = 492.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_jibrv")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_imfwd")
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_kkyw2")
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0.223529)
+theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 5
+theme_override_fonts/font = ExtResource("7_f6g1p")
+theme_override_font_sizes/font_size = 70
+text = "Galactic Scavenger"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme = ExtResource("8_imfwd")
+theme_override_constants/separation = 30
+
+[node name="PlayButton" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_gd8dd")]
+unique_name_in_owner = true
+z_index = 1
+custom_minimum_size = Vector2(402, 108)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = ExtResource("1_80vh7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wh0aq")
+theme_override_styles/pressed = ExtResource("1_80vh7")
+text = "Play"
+script = null
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/PlayButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = -12
+theme_override_constants/margin_top = -12
+theme_override_constants/margin_right = -12
+theme_override_constants/margin_bottom = -12
+
+[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/PlayButton/MarginContainer"]
+z_as_relative = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("1_jibrv")
+
+[node name="NewSaveButton" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_gd8dd")]
+z_index = 1
+custom_minimum_size = Vector2(402, 108)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = ExtResource("1_80vh7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wh0aq")
+theme_override_styles/pressed = ExtResource("1_80vh7")
+text = "New Save"
+scene = "res://Scenes/ShipMenu.tscn"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/NewSaveButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = -12
+theme_override_constants/margin_top = -12
+theme_override_constants/margin_right = -12
+theme_override_constants/margin_bottom = -12
+
+[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/NewSaveButton/MarginContainer"]
+z_as_relative = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("1_jibrv")
+
+[node name="TutorialButton" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_gd8dd")]
+z_index = 1
+custom_minimum_size = Vector2(402, 108)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = ExtResource("1_80vh7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wh0aq")
+theme_override_styles/pressed = ExtResource("1_80vh7")
+text = "Tutorial"
+scene = "res://Scenes/tutorial_menu.tscn"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/TutorialButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = -12
+theme_override_constants/margin_top = -12
+theme_override_constants/margin_right = -12
+theme_override_constants/margin_bottom = -12
+
+[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/TutorialButton/MarginContainer"]
+z_as_relative = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("1_jibrv")
+
+[node name="LeaderboardButton" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_gd8dd")]
+z_index = 1
+custom_minimum_size = Vector2(402, 108)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = ExtResource("1_80vh7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wh0aq")
+theme_override_styles/pressed = ExtResource("1_80vh7")
+text = "Leaderboard"
+scene = "res://Scenes/leaderboard.tscn"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/LeaderboardButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = -12
+theme_override_constants/margin_top = -12
+theme_override_constants/margin_right = -12
+theme_override_constants/margin_bottom = -12
+
+[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/LeaderboardButton/MarginContainer"]
+z_as_relative = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("1_jibrv")
+
+[node name="SettingsButton" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_gd8dd")]
+z_index = 1
+custom_minimum_size = Vector2(402, 108)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = ExtResource("1_80vh7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wh0aq")
+theme_override_styles/pressed = ExtResource("1_80vh7")
+text = "Settings"
+scene = "res://Scenes/settings_menu.tscn"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/SettingsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = -12
+theme_override_constants/margin_top = -12
+theme_override_constants/margin_right = -12
+theme_override_constants/margin_bottom = -12
+
+[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/SettingsButton/MarginContainer"]
+z_as_relative = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("1_jibrv")
+
+[node name="QuitButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+z_index = 1
+custom_minimum_size = Vector2(402, 108)
+layout_mode = 2
+theme = ExtResource("8_imfwd")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = ExtResource("1_80vh7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wh0aq")
+theme_override_styles/pressed = ExtResource("1_80vh7")
+text = "Quit"
+script = ExtResource("3_unk5y")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/QuitButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = -12
+theme_override_constants/margin_top = -12
+theme_override_constants/margin_right = -12
+theme_override_constants/margin_bottom = -12
+
+[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/QuitButton/MarginContainer"]
+z_as_relative = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("1_jibrv")
+
+[node name="BootSplash" type="TextureRect" parent="."]
+visible = false
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_ixub4")
+script = ExtResource("12_qit47")
+
+[node name="BootPlanet" type="TextureRect" parent="."]
+visible = false
+z_index = 3
+layout_mode = 0
+offset_left = 828.0
+offset_top = 408.0
+offset_right = 1092.0
+offset_bottom = 672.0
+texture = ExtResource("11_8krfh")
+script = ExtResource("14_uif0o")
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]

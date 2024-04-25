@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=3 uid="uid://ctyl652byop1t"]
+
+[ext_resource type="Theme" uid="uid://d4enr3o3c1o82" path="res://Resources/ui.tres" id="1_eh6lv"]
+[ext_resource type="Script" path="res://Scripts/submitscore_screen.gd" id="2_mc652"]
+[ext_resource type="Theme" uid="uid://b4rnwi0o6qqrj" path="res://Resources/HeaderTheme.tres" id="3_bhgxb"]
+[ext_resource type="Script" path="res://Scripts/NameEdit.gd" id="4_j0uev"]
+[ext_resource type="FontFile" uid="uid://dy3wkb7nott0s" path="res://Assets/Fonts/PixelFJVerdana12pt.ttf" id="4_rilyk"]
+
+[node name="SubmitscoreScreen" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_eh6lv")
+script = ExtResource("2_mc652")
+mainMenu = "res://Scenes/main_menu.tscn"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_eh6lv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_eh6lv")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_bhgxb")
+text = "Submit score"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_eh6lv")
+text = "Score: 500"
+horizontal_alignment = 1
+
+[node name="ScoreLabel2" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme = ExtResource("1_eh6lv")
+theme_override_fonts/font = ExtResource("4_rilyk")
+theme_override_font_sizes/font_size = 12
+text = "Disclaimer: do not submit any personal information as your username as other users can see this."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_eh6lv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
+layout_mode = 2
+theme = ExtResource("1_eh6lv")
+
+[node name="NameEdit" type="LineEdit" parent="MarginContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_eh6lv")
+placeholder_text = "Name here"
+max_length = 12
+expand_to_text_length = true
+script = ExtResource("4_j0uev")
+
+[node name="SubmitButton" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_eh6lv")
+text = "Submit"
+
+[node name="ReturnButton" type="Button" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme = ExtResource("1_eh6lv")
+text = "Close"
+
+[connection signal="text_changed" from="MarginContainer/CenterContainer/VBoxContainer/NameEdit" to="MarginContainer/CenterContainer/VBoxContainer/NameEdit" method="_on_text_changed"]

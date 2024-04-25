@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="GeneratorItem" load_steps=4 format=3 uid="uid://bnp2piey6f6h6"]
+
+[ext_resource type="Texture2D" uid="uid://d217hjby4qatp" path="res://Assets/ItemSprites/on_reload_2.png" id="1_b5bee"]
+[ext_resource type="Script" path="res://Scripts/GeneratorItemClass.gd" id="1_yuyh0"]
+[ext_resource type="Script" path="res://Scripts/GeneratorScripts/on_reload_script.gd" id="2_hanja"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_yuyh0")
+energyGenerated = 10
+nodeScript = ExtResource("2_hanja")
+name = "Refined maga"
+description = "Gain amount energy when reload is finished"
+inventorySprite = ExtResource("1_b5bee")
+price = 100
+rarity = 1

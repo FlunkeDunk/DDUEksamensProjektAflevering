@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Artifact" load_steps=4 format=3 uid="uid://5gqh37tylx6b"]
+
+[ext_resource type="Script" path="res://Scripts/ArtifactClass.gd" id="1_gv14d"]
+[ext_resource type="Texture2D" uid="uid://7lrcp1kxleru" path="res://Assets/ItemSprites/OneshotChance_6x6.png" id="1_v0ynt"]
+[ext_resource type="Script" path="res://Scripts/Artifacts/OneshotChanceScript.gd" id="1_xgukq"]
+
+[resource]
+script = ExtResource("1_gv14d")
+nodeScript = ExtResource("1_xgukq")
+name = "Reactor core"
+description = "Bullets have a 5% chance to instantly kill an enemy"
+inventorySprite = ExtResource("1_v0ynt")
+price = 300
+rarity = 0

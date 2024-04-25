@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="GeneratorItem" load_steps=4 format=3 uid="uid://21x3pnwombim"]
+
+[ext_resource type="Texture2D" uid="uid://dqib8yjiuun5l" path="res://Assets/ItemSprites/on_enemy_taken_damage_6x6.png" id="1_ickry"]
+[ext_resource type="Script" path="res://Scripts/GeneratorScripts/on_enemy_taken_damage_script.gd" id="1_pbn3q"]
+[ext_resource type="Script" path="res://Scripts/GeneratorItemClass.gd" id="1_rne0l"]
+
+[resource]
+script = ExtResource("1_rne0l")
+energyGenerated = 1
+nodeScript = ExtResource("1_pbn3q")
+name = "Microbot"
+description = "Gain amount energy when an enemy takes damage"
+inventorySprite = ExtResource("1_ickry")
+price = 100
+rarity = 0

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Artifact" load_steps=4 format=3 uid="uid://c4yd6u2b1akup"]
+
+[ext_resource type="Script" path="res://Scripts/Artifacts/ExplodingBulletsScript.gd" id="1_1h2ph"]
+[ext_resource type="Texture2D" uid="uid://bvb1gnjjxg0ql" path="res://Assets/ItemSprites/ExplodingBullets_6x6.png" id="1_buims"]
+[ext_resource type="Script" path="res://Scripts/ArtifactClass.gd" id="1_jf56w"]
+
+[resource]
+script = ExtResource("1_jf56w")
+nodeScript = ExtResource("1_1h2ph")
+name = "Gunpowder"
+description = "Bullets explode upon hitting an enemy scaling with bullet damge"
+inventorySprite = ExtResource("1_buims")
+price = 300
+rarity = 0

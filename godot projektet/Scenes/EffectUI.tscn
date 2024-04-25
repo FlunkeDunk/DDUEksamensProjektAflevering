@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdvxlrqoxuqih"]
+
+[ext_resource type="Script" path="res://Scripts/EffectUI.gd" id="1_l4vor"]
+[ext_resource type="Texture2D" uid="uid://1gcjbwhjbcli" path="res://Assets/icon.svg" id="2_5picq"]
+[ext_resource type="Texture2D" uid="uid://bfcgjifslf2mu" path="res://Assets/80x80black.png" id="3_pfewg"]
+
+[node name="EffectUI" type="Control"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_l4vor")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.458824, 0.458824, 0.458824, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_5picq")
+expand_mode = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+self_modulate = Color(1, 1, 1, 0.588235)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+fill_mode = 5
+texture_progress = ExtResource("3_pfewg")

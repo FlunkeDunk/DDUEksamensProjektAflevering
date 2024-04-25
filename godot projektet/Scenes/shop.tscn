@@ -1,0 +1,205 @@
+[gd_scene load_steps=7 format=3 uid="uid://br41xsx2uxfq1"]
+
+[ext_resource type="StyleBox" uid="uid://b54hf5srakv6i" path="res://Resources/metalPanelStyleBox.tres" id="1_1eco2"]
+[ext_resource type="Theme" uid="uid://d4enr3o3c1o82" path="res://Resources/ui.tres" id="1_4uwy6"]
+[ext_resource type="Script" path="res://Scripts/shop.gd" id="1_xrni0"]
+[ext_resource type="StyleBox" uid="uid://bqidy4l20f2ob" path="res://Resources/digitalPanelStyleBox.tres" id="2_drdiv"]
+[ext_resource type="StyleBox" uid="uid://li8dobj0samt" path="res://Resources/digitalPanelOrangeStyleBox.tres" id="3_a36kh"]
+[ext_resource type="PackedScene" uid="uid://dkl0rgmspqnyr" path="res://Scenes/scene_change_button.tscn" id="6_nkjr8"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("1_4uwy6")
+script = ExtResource("1_xrni0")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("1_4uwy6")
+theme_override_styles/panel = ExtResource("1_1eco2")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme = ExtResource("1_4uwy6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_4uwy6")
+
+[node name="ShopName" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_4uwy6")
+text = "Shop Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_4uwy6")
+theme_override_styles/panel = ExtResource("2_drdiv")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_4uwy6")
+
+[node name="SceneChangeButton" parent="Panel/MarginContainer/VBoxContainer/Panel/MarginContainer2" instance=ExtResource("6_nkjr8")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "Leave"
+scene = "res://Scenes/ShipMenu.tscn"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/Panel/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("1_4uwy6")
+theme_override_constants/separation = 20
+
+[node name="DollarSign" type="Label" parent="Panel/MarginContainer/VBoxContainer/Panel/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("1_4uwy6")
+theme_override_colors/font_color = Color(1, 0.862745, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "$"
+horizontal_alignment = 2
+
+[node name="MoneyLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/Panel/MarginContainer2/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("1_4uwy6")
+theme_override_colors/font_color = Color(1, 0.862745, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "0"
+horizontal_alignment = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/Panel/MarginContainer2"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("1_4uwy6")
+alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel/MarginContainer/VBoxContainer/Panel/MarginContainer2/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme = ExtResource("1_4uwy6")
+
+[node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/Panel/MarginContainer2/HBoxContainer2/CenterContainer"]
+custom_minimum_size = Vector2(700, 288)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme = ExtResource("1_4uwy6")
+theme_override_styles/panel = ExtResource("3_a36kh")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/Panel/MarginContainer2/HBoxContainer2/CenterContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_4uwy6")
+
+[node name="ItemContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/Panel/MarginContainer2/HBoxContainer2/CenterContainer/Panel/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_4uwy6")
+theme_override_constants/separation = 96
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/Panel/MarginContainer2/HBoxContainer2"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_4uwy6")
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/Panel/MarginContainer2/HBoxContainer2/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_4uwy6")
+theme_override_styles/panel = ExtResource("3_a36kh")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/Panel/MarginContainer2/HBoxContainer2/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_4uwy6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/Panel/MarginContainer2/HBoxContainer2/MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_4uwy6")
+
+[node name="ItemNameLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/Panel/MarginContainer2/HBoxContainer2/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_4uwy6")
+theme_override_font_sizes/font_size = 18
+text = "Name"
+
+[node name="ItemTypeLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/Panel/MarginContainer2/HBoxContainer2/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_4uwy6")
+theme_override_font_sizes/font_size = 18
+text = "Type"
+
+[node name="ItemDescriptionLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/Panel/MarginContainer2/HBoxContainer2/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 333)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_4uwy6")
+theme_override_font_sizes/font_size = 18
+text = "Descriptionf .wefwemfpwkmf ipawmfipawmf ipamfpiaaeaergaerg erngoauerjngh oaerughjoaeugh juoaerjguo"
+autowrap_mode = 3
+
+[node name="ItemPriceLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/Panel/MarginContainer2/HBoxContainer2/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("1_4uwy6")
+theme_override_colors/font_color = Color(1, 0.827451, 0.0470588, 1)
+theme_override_font_sizes/font_size = 18
+text = "Price"
+
+[node name="BuyButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/Panel/MarginContainer2/HBoxContainer2/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("1_4uwy6")
+text = "Buy"
